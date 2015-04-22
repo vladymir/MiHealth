@@ -1,4 +1,4 @@
-package br.ufc.ubicomp.mihealth.utils;
+package br.ufc.ubicomp.mihealth.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

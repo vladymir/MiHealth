@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <receiver
-            android:name=".utils.NetChangedReceiver"
+            android:name=".receivers.NetChangedReceiver"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
@@ -37,7 +37,7 @@
         </service>
 
         <receiver
-            android:name=".utils.BootReceiver"
+            android:name=".receivers.BootReceiver"
             android:enabled="true"
             android:exported="true" >
         </receiver>

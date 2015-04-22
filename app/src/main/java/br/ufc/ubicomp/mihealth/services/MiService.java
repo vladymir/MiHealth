@@ -41,11 +41,6 @@ public class MiService extends Service implements ConnectionCallbacks, OnConnect
                 .build();
     }
 
-    //public void onEvent(MiEvent event) {
-    //    Log.d("EVENTBUS", "Get the event " + event.message + " !!");
-    //    Toast.makeText(this, "EVENT " + event.message + "CAPTURED!", Toast.LENGTH_LONG).show();
-    //}
-
     public void onEvent(GetLocationEvent event) {
         Log.d("EVENTBUS", "GET LOCATION EVENT CAPTURED!");
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
@@ -70,16 +65,13 @@ public class MiService extends Service implements ConnectionCallbacks, OnConnect
 
     @Override
     public void onConnected(Bundle bundle) {
-        eventBus.register(this);
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-
     }
 }

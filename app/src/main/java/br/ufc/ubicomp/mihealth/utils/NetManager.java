@@ -11,16 +11,15 @@ public class NetManager {
 
     public static boolean isOnline(Context context) {
         NetworkInfo activeNetwork = NetManager.netInfo(context);
-        boolean isConnected = activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
-        return isConnected;
+        return (activeNetwork != null && activeNetwork.isConnectedOrConnecting());
     }
 
     public static boolean isWifi(Context context) {
-        return NetManager.netInfo(context).getType() == ConnectivityManager.TYPE_WIFI;
+        return (NetManager.netInfo(context).getType() == ConnectivityManager.TYPE_WIFI);
     }
 
     private static NetworkInfo netInfo(Context context) {
-        return ((ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+        return ((ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE))
+                .getActiveNetworkInfo();
     }
 }
