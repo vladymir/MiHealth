@@ -7,8 +7,8 @@ public class LastLocationEvent extends MiEvent {
     public final double lat;
     public final double lon;
 
-    public LastLocationEvent(String message, double lat, double lon) {
-        super(message);
+    public LastLocationEvent(double lat, double lon) {
+        super("LastLocation");
         this.lat = lat;
         this.lon = lon;
     }

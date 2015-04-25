@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Created by vladymirbezerra on 09/04/15.
  */
-public class MiEvent {
+public abstract class MiEvent {
     public final String message;
 
     public MiEvent(String message){

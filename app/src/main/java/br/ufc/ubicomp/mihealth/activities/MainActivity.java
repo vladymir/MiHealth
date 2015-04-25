@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
 
     public void onClick(View view) {
         //eventBus.post(new MiEvent("event "));
-        eventBus.post(new GetLocationEvent("get location"));
+        eventBus.post(new GetLocationEvent());
     }
 }
 

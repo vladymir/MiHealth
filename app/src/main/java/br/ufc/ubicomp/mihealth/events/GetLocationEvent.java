@@ -5,7 +5,7 @@ package br.ufc.ubicomp.mihealth.events;
  */
 public class GetLocationEvent extends MiEvent {
 
-    public GetLocationEvent(String message) {
-        super(message);
+    public GetLocationEvent() {
+        super("GetLocation");
     }
 }
