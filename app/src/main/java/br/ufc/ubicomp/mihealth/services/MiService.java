@@ -1,35 +1,27 @@
 package br.ufc.ubicomp.mihealth.services;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
-import br.ufc.ubicomp.mihealth.events.GetLocationEvent;
-import br.ufc.ubicomp.mihealth.utils.LocationUtil;
-import de.greenrobot.event.EventBus;
-
-import static android.location.LocationManager.*;
+import br.ufc.ubicomp.mihealth.bus.MainEventBus;
+import br.ufc.ubicomp.mihealth.events.LocationEvent;
 
 public class MiService extends Service {
 
-    private final EventBus eventBus = EventBus.getDefault();
-    private LocationUtil locationUtil;
     public MiService() {
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        locationUtil = new LocationUtil(this);
-        eventBus.register(this);
+        MainEventBus.register(this);
     }
 
-    public void onEvent(GetLocationEvent event) {
-        Log.d("EVENTBUS","Location: "+locationUtil.getLastKnownLocation().getLatitude());
+    @SuppressWarnings("Method called by EventBus objects")
+    public void onEvent(LocationEvent event) {
+        Log.d("LOCATION_EVENT","Location: "+ event.location.lat);
     }
 
     @Override
@@ -43,6 +35,5 @@ public class MiService extends Service {
         Log.d("VLAD", "MY SERVICE STARTED");
         return super.onStartCommand(intent, flags, startId);
     }
-
 
 }

@@ -1,26 +1,20 @@
 package br.ufc.ubicomp.mihealth.activities;
 
 import android.app.Activity;
-import android.app.usage.UsageEvents;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import br.ufc.ubicomp.mihealth.R;
-import br.ufc.ubicomp.mihealth.events.GetLocationEvent;
-import br.ufc.ubicomp.mihealth.events.LastLocationEvent;
-import br.ufc.ubicomp.mihealth.events.MiEvent;
+import br.ufc.ubicomp.mihealth.bus.MainEventBus;
+import br.ufc.ubicomp.mihealth.events.GenericEvent;
+import br.ufc.ubicomp.mihealth.events.LocationEvent;
 import br.ufc.ubicomp.mihealth.services.MiService;
-import de.greenrobot.event.EventBus;
 
 
 public class MainActivity extends Activity {
-
-    private final EventBus eventBus = EventBus.getDefault();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +23,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        eventBus.register(this);
+        MainEventBus.register(this);
     }
 
     @Override
@@ -39,14 +33,14 @@ public class MainActivity extends Activity {
         return true;
     }
 
-    public void onEvent(LastLocationEvent event) {
-        Toast.makeText(this, "Lat: " + event.lat + " Lon: " + event.lon
+    public void onEvent(LocationEvent event) {
+        Toast.makeText(this, "Lat: " + event.location.lat + " Lon: " + event.location.lon
                 , Toast.LENGTH_SHORT).show();
     }
 
     public void onClick(View view) {
-        //eventBus.post(new MiEvent("event "));
-        eventBus.post(new GetLocationEvent());
+        // TODO Código de teste apenas
+        MainEventBus.notify(new GenericEvent());
     }
 }
 
