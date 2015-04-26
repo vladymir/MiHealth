@@ -107,7 +107,7 @@ public class LocationSensor extends MiSensor {
 
             } catch (IOException e) {
                 e.printStackTrace();
-                ErrorHandlerEventBus.notify( new ErrorEvent(e) );
+                ErrorHandlerEventBus.signal(new ErrorEvent(e));
             }
 
             return new Address(Locale.getDefault());

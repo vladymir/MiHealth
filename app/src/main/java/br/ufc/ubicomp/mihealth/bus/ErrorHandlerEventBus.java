@@ -1,6 +1,6 @@
 package br.ufc.ubicomp.mihealth.bus;
 
-import br.ufc.ubicomp.mihealth.events.MiEvent;
+import br.ufc.ubicomp.mihealth.events.ErrorEvent;
 import de.greenrobot.event.EventBus;
 
 /**
@@ -20,7 +20,7 @@ public class ErrorHandlerEventBus {
         bus.register(subscriber);
     }
 
-    public static void notify(MiEvent event) {
+    public static void signal(ErrorEvent event) {
         bus.post(event);
     }
 }
