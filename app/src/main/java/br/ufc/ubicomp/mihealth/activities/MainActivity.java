@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import br.ufc.ubicomp.mihealth.R;
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
+import br.ufc.ubicomp.mihealth.events.FinalizeEvent;
 import br.ufc.ubicomp.mihealth.events.GenericEvent;
 import br.ufc.ubicomp.mihealth.events.LocationEvent;
 import br.ufc.ubicomp.mihealth.services.MiService;
@@ -33,9 +34,19 @@ public class MainActivity extends Activity {
         return true;
     }
 
+    /**
+     * Método chamado pelo EventBus
+     * @param event
+     */
     public void onEvent(LocationEvent event) {
         Toast.makeText(this, "Lat: " + event.location.lat + " Lon: " + event.location.lon
                 , Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        // Sinaliza os componentes que a aplicação se encerrou
+        MainEventBus.notify(new FinalizeEvent());
     }
 
     public void onClick(View view) {

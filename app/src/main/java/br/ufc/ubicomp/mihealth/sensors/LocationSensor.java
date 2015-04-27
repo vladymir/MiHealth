@@ -43,7 +43,8 @@ public class LocationSensor extends MiSensor {
     private void dispathEvent(Location location) {
 
         if (location == null) {
-            // TODO Notificar erro de execução
+            ErrorHandlerEventBus.signal(new ErrorEvent(new RuntimeException("Variáveis não podem ser nulas...")));
+            // TODO O mecanismo de tratamento de erro precisa para a execução neste ponto
             return;
         }
 

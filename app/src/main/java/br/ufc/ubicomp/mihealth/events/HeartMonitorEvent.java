@@ -5,8 +5,11 @@ package br.ufc.ubicomp.mihealth.events;
  */
 public class HeartMonitorEvent extends MiEvent {
 
-    public HeartMonitorEvent() {
+    public final double heartFrequency;
+
+    public HeartMonitorEvent(Double heartFrequency) {
         super("Heart monitor event");
+        this.heartFrequency = heartFrequency;
     }
 
 }
