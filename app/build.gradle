@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'MiHealth-key'
             keyPassword 'android'
-            storeFile file('D:/repositorios/MiHealth/keystore/keyAndroid.jks')
+            storeFile file('/Users/vladymirbezerra/AndroidStudioProjects/MiHealth/app/mihealth.keystore')
             storePassword 'android'
         }
     }
@@ -39,5 +39,6 @@ dependencies {
     compile 'com.google.android.gms:play-services:7.0.0'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.google.code.gson:gson:2.3.1'
-    compile 'org.roboguice:roboguice:3.0.1'
+    compile 'com.j256.ormlite:ormlite-android:4.48'
+    compile 'com.j256.ormlite:ormlite-core:4.48'
 }
