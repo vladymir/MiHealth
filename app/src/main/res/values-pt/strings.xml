@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MiHealth</string>
+    <string name="bem_Vindo">Bem Vindo !</string>
+    <string name="Medicamentos">Medicamentos</string>
+    <string name="Nome">Nome</string>
+    <string name="Contatos">Contatos</string>
+    <string name="Telefone">Telefone</string>
+    <string name="Cadastrar">Cadastrar</string>
+    <string name="Idioma">Idioma</string>
+    <string name="dataNasc">Data de Nascimento</string>
+    <string name="sexo">Sexo</string>
+    <string name="proximo">Próximo</string>
+    <string name="ajustes">Ajustes</string>
+</resources>
