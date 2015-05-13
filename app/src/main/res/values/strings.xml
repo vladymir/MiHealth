@@ -20,5 +20,7 @@
     <string name="title_activity_contatos">contatos</string>
     <string name="title_activity_ajustes">ajustes</string>
     <string name="title_activity_pessoas">pessoas</string>
+    <string name="title_activity_cadastro_usuario">cadastro_usuario</string>
+    <string name="title_activity_lista_medic">lista_medic</string>
 
 </resources>

@@ -199,34 +199,44 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send to Service"
             android:id="@+id/button"
+            android:text="Send to Service"
             android:onClick="onClick"
             android:src="@mipmap/ic_action_person"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/medCad"
             android:src="@mipmap/ic_action_new"
+            android:text="Send to Service"
+            android:onClick="onClick"
             android:contentDescription="@string/Medicamentos"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cadCont"
             android:src="@mipmap/ic_action_add_person"
+            android:text="Send to Service"
+            android:onClick="onClick"
             android:contentDescription="@string/Contatos"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ajustes"
             android:src="@mipmap/ic_action_settings"
+            android:text="Send to Service"
+            android:onClick="onClick"
             android:contentDescription="@string/ajustes"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
 
 
 
