@@ -14,6 +14,13 @@
     <string name="sexo">Sexo</string>
     <string name="proximo">Próximo</string>
     <string name="ajustes">Ajustes</string>
+    <string name="horarios">Horarios</string>
+    <string name="indicacao">Indicacao</string>
+    <string name="fc">Freq. Cardiaca</string>
+    <string name="temperatura">Temperatura</string>
+    <string name="proxMedic">Prox. Medic.</string>
+    <string name="tempCorp">Temp. Corp.</string>
+    <string name="usuario">Usuario</string>
     <string name="title_activity_medicacao">medicacao</string>
     <string name="title_activity_contatos">contatos</string>
     <string name="title_activity_ajustes">ajustes</string>
