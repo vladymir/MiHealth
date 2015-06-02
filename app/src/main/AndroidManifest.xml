@@ -57,6 +57,26 @@
             android:name=".activities.lista_medic"
             android:label="@string/title_activity_lista_medic" >
         </activity>
+        <activity
+            android:name=".activities.master_footer"
+            android:label="@string/title_activity_master_footer" >
+        </activity>
+        <activity
+            android:name=".activities.lista_contato"
+            android:label="@string/title_activity_lista_contato" >
+        </activity>
+        <activity
+            android:name=".activities.cadastrar_contato"
+            android:label="@string/title_activity_cadastrar_contato" >
+        </activity>
+        <activity
+            android:name=".activities.cadastrar_medic"
+            android:label="@string/title_activity_cadastrar_medic" >
+        </activity>
+        <activity
+            android:name=".activities.master_top"
+            android:label="@string/title_activity_master_top" >
+        </activity>
     </application>
 
 </manifest>

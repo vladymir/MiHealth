@@ -22,5 +22,18 @@
     <string name="title_activity_pessoas">pessoas</string>
     <string name="title_activity_cadastro_usuario">cadastro_usuario</string>
     <string name="title_activity_lista_medic">lista_medic</string>
+    <string name="title_activity_master_footer">master_footer</string>
+    <string name="title_activity_lista_contato">lista_contato</string>
+    <string name="title_activity_cadastrar_contato">cadastrar_contato</string>
+    <string name="title_activity_cadastrar_medic">cadastrar_medic</string>
+    <string name="indicacao">Suitable For</string>
+    <string name="horarios">Medication Schedules</string>
+    <string name="fc">Heart Rate</string>
+    <string name="temperatura">Temperature</string>
+    <string name="tempCorp">Body Temperature</string>
+    <string name="proxMedic">Next Medication</string>
+    <string name="title_activity_activity_master_top">activity_master_top</string>
+    <string name="title_activity_master_top">master_top</string>
+    <string name="usuario">User</string>
 
 </resources>

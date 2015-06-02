@@ -12,4 +12,11 @@
     <string name="sexo">Sexo</string>
     <string name="proximo">Próximo</string>
     <string name="ajustes">Ajustes</string>
+    <string name="indicacao">Indicado Para</string>
+    <string name="horarios">Horários da Medicação</string>
+    <string name="fc">Frequência Cardíaca </string>
+    <string name="temperatura">Temperatura</string>
+    <string name="tempCorp">Temperatura Corporal</string>
+    <string name="proxMedic">Próxima Medicação</string>
+    <string name="usuario">Usuário</string>
 </resources>

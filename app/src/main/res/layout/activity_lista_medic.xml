@@ -2,18 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:weightSum="8"
     android:orientation="vertical"
+    android:weightSum="10"
     tools:context="br.ufc.ubicomp.mihealth.activities.lista_medic">
 
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="8"
-        android:weightSum="8"
-        >
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,7 +15,7 @@
             android:text="@string/Medicamentos"
             android:id="@+id/textView13"
             android:textSize="@dimen/abc_text_size_display_3_material"
-            android:layout_weight="2"
+            android:layout_weight="1"
             style="@style/Theme.MyTheme"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
@@ -32,7 +25,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/scrollView"
-            android:layout_weight="6"
+            android:layout_weight="9"
             android:fillViewport="true">
 
             <ListView
@@ -45,10 +38,11 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:weightSum="2"
             android:background="@color/colorAccent"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            android:layout_weight="0"
+            android:gravity="center_vertical">
 
             <Button
                 android:layout_width="wrap_content"
@@ -65,72 +59,17 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:text="New Button"
                 android:id="@+id/button3"
                 android:src="@mipmap/ic_action_new"
                 android:layout_weight="1"
                 android:alpha="1"
                 android:background="@android:color/transparent" />
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        style="@android:style/ButtonBar"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/linearLayout2"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:minHeight="@dimen/abc_action_bar_default_height_material"
-        android:background="@color/colorPrimary"
-        android:alpha="1"
-        android:focusable="false"
-        android:weightSum="4"
-        android:layout_weight="2">
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton5"
-            android:text="Send to Service"
-            android:onClick="onClick"
-            android:src="@mipmap/ic_action_person"
-            android:layout_weight="1"
-            android:background="@android:color/transparent" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton6"
-            android:src="@mipmap/ic_action_new"
-            android:text="Send to Service"
-            android:onClick="onClick"
-            android:contentDescription="@string/Medicamentos"
-            android:layout_weight="1"
-            android:background="@android:color/transparent" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton7"
-            android:src="@mipmap/ic_action_add_person"
-            android:text="Send to Service"
-            android:onClick="onClick"
-            android:contentDescription="@string/Contatos"
-            android:layout_weight="1"
-            android:background="@android:color/transparent" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton8"
-            android:src="@mipmap/ic_action_settings"
-            android:text="Send to Service"
-            android:onClick="onClick"
-            android:contentDescription="@string/ajustes"
-            android:layout_weight="1"
-            android:background="@android:color/transparent" />
-    </LinearLayout>
+<include
+    android:id="@+id/rodape_view"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    layout="@layout/activity_master_footer"
+    android:layout_weight="1" />
 
 </LinearLayout>
