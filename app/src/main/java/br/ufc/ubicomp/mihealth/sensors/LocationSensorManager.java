@@ -24,11 +24,11 @@ import br.ufc.ubicomp.mihealth.events.LocationEvent;
  * Created by vladymirbezerra on 24/04/15.
  * Modified by nelson on 25/04/15.
  */
-public class LocationSensor extends MiSensor {
+public class LocationSensorManager extends MiSensorManager {
 
     private LocationAgent locationAgent;
 
-    public LocationSensor(Context context) {
+    public LocationSensorManager(Context context) {
         this.locationAgent = new LocationAgent(context);
     }
 

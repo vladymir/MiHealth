@@ -1,21 +1,35 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'MiHealth-key'
+            keyPassword 'android'
+            storeFile file('D:/repositorios/MiHealth/keystore/keyAndroid.jks')
+            storePassword 'android'
+        }
+    }
     compileSdkVersion 21
-    buildToolsVersion "21.1.2"
-
+    buildToolsVersion '21.1.2'
     defaultConfig {
         applicationId "br.ufc.ubicomp.mihealth"
         minSdkVersion 15
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+    productFlavors {
     }
 }
 

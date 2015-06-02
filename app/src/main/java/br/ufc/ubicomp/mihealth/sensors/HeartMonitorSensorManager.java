@@ -12,12 +12,12 @@ import br.ufc.ubicomp.mihealth.events.HeartMonitorEvent;
 /**
  * Created by nelson on 25/04/15.
  */
-public class HeartMonitorSensor extends MiSensor {
+public class HeartMonitorSensorManager extends MiSensorManager {
 
     private HeartMonitorAgent heartMonitorAgent;
     private boolean isActive;
 
-    public HeartMonitorSensor() {
+    public HeartMonitorSensorManager() {
         heartMonitorAgent = new HeartMonitorAgent();
 
         // Assina no EventBus para receber a notificação de finalização de execução

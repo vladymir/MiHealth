@@ -42,15 +42,15 @@
                 android:layout_gravity="center_horizontal|top"
                 style="@style/Theme.MyTheme" />
 
-            <EditText
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText2"
+                android:id="@+id/heartFreq"
                 android:layout_gravity="center"
                 style="@style/Theme.MyTheme"
                 android:textStyle="bold"
                 android:textSize="@dimen/abc_text_size_display_3_material"
-                android:text="70"
+                android:text="--"
                 android:gravity="center_horizontal" />
 
             <TextView
@@ -77,14 +77,14 @@
                 android:id="@+id/textView9"
                 android:layout_gravity="center_horizontal|top"
                 style="@style/Theme.MyTheme" />
-            <EditText
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText5"
                 android:layout_gravity="center"
                 style="@style/Theme.MyTheme"
                 android:textSize="@dimen/abc_text_size_display_3_material"
-                android:text="28"
+                android:text="--"
                 android:textStyle="bold"
                 android:gravity="center_horizontal" />
             <TextView
@@ -123,7 +123,7 @@
                 android:layout_gravity="center_horizontal|top"
                 style="@style/Theme.MyTheme" />
 
-            <EditText
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText3"
@@ -132,7 +132,7 @@
                 android:gravity="center_horizontal"
                 android:textStyle="bold" />
 
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText6"
@@ -161,7 +161,7 @@
                 android:layout_gravity="center_horizontal|top"
                 style="@style/Theme.MyTheme" />
 
-            <EditText
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText4"
@@ -169,7 +169,7 @@
                 style="@style/Theme.MyTheme"
                 android:textStyle="bold"
                 android:textSize="@dimen/abc_text_size_display_3_material"
-                android:text="38"
+                android:text="--"
                 android:gravity="center_horizontal" />
             <TextView
                 android:layout_width="wrap_content"

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MiHealth</string>
+    <string name="hello_world">Olá Mundo!</string>
+    <string name="action_settings">Configurações</string>
     <string name="bem_Vindo">Bem Vindo !</string>
     <string name="Medicamentos">Medicamentos</string>
     <string name="Nome">Nome</string>
@@ -12,4 +14,10 @@
     <string name="sexo">Sexo</string>
     <string name="proximo">Próximo</string>
     <string name="ajustes">Ajustes</string>
+    <string name="title_activity_medicacao">medicacao</string>
+    <string name="title_activity_contatos">contatos</string>
+    <string name="title_activity_ajustes">ajustes</string>
+    <string name="title_activity_pessoas">pessoas</string>
+    <string name="title_activity_cadastro_usuario">cadastro_usuario</string>
+    <string name="title_activity_lista_medic">Lista Medicamentos</string>
 </resources>
