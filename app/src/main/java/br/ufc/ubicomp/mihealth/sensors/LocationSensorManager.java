@@ -40,7 +40,7 @@ public class LocationSensorManager extends MiSensorManager {
      * É notificado pelo agente para disparar o evento de mudança de localização
      * @param location Nova localização
      */
-    private void dispathEvent(Location location) {
+    private void dispatchEvent(Location location) {
 
         if (location == null) {
             ErrorHandlerEventBus.signal(new ErrorEvent(new RuntimeException("Variáveis não podem ser nulas...")));
@@ -66,7 +66,7 @@ public class LocationSensorManager extends MiSensorManager {
         }
 
         public void onLocationChanged(Location location) {
-            dispathEvent(location);
+            dispatchEvent(location);
         }
 
         public void onStatusChanged(String provider, int status, Bundle extras) {

@@ -3,9 +3,6 @@ package br.ufc.ubicomp.mihealth.data;
 import android.location.Address;
 import android.location.Location;
 
-/**
- * Created by nelson on 25/04/15.
- */
 public class MiLocation {
 
     /**

@@ -5,7 +5,7 @@ package br.ufc.ubicomp.mihealth.events;
  */
 public class HeartMonitorEvent extends MiEvent {
 
-    public double heartFrequency;
+    public Double heartFrequency;
     // TODO Remove
     @Deprecated
     public String heartFrequencyStr;

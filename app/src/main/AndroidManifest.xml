@@ -49,11 +49,11 @@
         </receiver>
 
         <activity
-            android:name=".activities.cadastro_usuario"
+            android:name=".activities.UserRegistrationActivity"
             android:label="@string/title_activity_cadastro_usuario" >
         </activity>
         <activity
-            android:name=".activities.lista_medic"
+            android:name=".activities.MedicinesActivity"
             android:label="@string/title_activity_lista_medic" >
         </activity>
 

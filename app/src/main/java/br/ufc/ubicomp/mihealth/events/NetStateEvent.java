@@ -1,13 +1,11 @@
 package br.ufc.ubicomp.mihealth.events;
 
-/**
- * Created by vladymirbezerra on 24/04/15.
- */
-public class NetStateEvent extends MiEvent {
-    public enum  ConnState {CONNECTED, DISCONNECTED}
-    public final ConnState state;
+import br.ufc.ubicomp.mihealth.enums.NetworkState;
 
-    public NetStateEvent(ConnState state){
+public class NetStateEvent extends MiEvent {
+    public final NetworkState state;
+
+    public NetStateEvent(NetworkState state){
         super("NetworkState");
         this.state = state;
     }
