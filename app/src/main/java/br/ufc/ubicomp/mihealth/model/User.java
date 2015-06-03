@@ -1,28 +1,24 @@
 package br.ufc.ubicomp.mihealth.model;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
-
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 import br.ufc.ubicomp.mihealth.enums.Gender;
 
-/**
- * Created by vladymirbezerra on 25/04/15.
- */
-@DatabaseTable
+
 public class User implements Serializable {
-    @DatabaseField(generatedId = true, canBeNull = false)
     private int id;
-    @DatabaseField
     private Gender gender;
-    @DatabaseField(canBeNull = false)
     private String name;
-    @DatabaseField(canBeNull = false)
     private Date birthDate;
-    @DatabaseField
-    private HeartBeatFreq heartBeatFreq;
+    private List<HeartBeatFreq> heartBeatFreq;
+
+    public User() {
+        this.heartBeatFreq = new ArrayList<HeartBeatFreq>();
+    }
 
     public int getId() {
         return id;
@@ -56,11 +52,31 @@ public class User implements Serializable {
         this.birthDate = birthDate;
     }
 
-    public HeartBeatFreq getHeartBeatFreq() {
+    public List<HeartBeatFreq> getFreqs() {
         return heartBeatFreq;
     }
 
-    public void setHeartBeatFreq(HeartBeatFreq heartBeatFreq) {
-        this.heartBeatFreq = heartBeatFreq;
+    public void setFreqs(List<HeartBeatFreq> freqs) {
+        this.heartBeatFreq = freqs;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if(this == other)
+            return true;
+        if(!(other instanceof User))
+            return false;
+
+        User user = (User)other;
+
+        return (this.id == user.getId()       &&
+                this.birthDate.equals(user.birthDate) &&
+                this.name.equals(user.name) &&
+                this.gender == user.gender);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id, this.birthDate, this.name, this.gender);
     }
 }

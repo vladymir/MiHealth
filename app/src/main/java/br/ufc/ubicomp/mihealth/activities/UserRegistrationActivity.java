@@ -7,19 +7,20 @@ import android.view.MenuItem;
 
 import br.ufc.ubicomp.mihealth.R;
 
-public class lista_medic extends ActionBarActivity {
+
+public class UserRegistrationActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_medic);
+        setContentView(R.layout.activity_cadastrar_usuario);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_lista_medic, menu);
+        getMenuInflater().inflate(R.menu.menu_cadastro_usuario, menu);
         return true;
     }
 

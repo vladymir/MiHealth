@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:weightSum="10"
     android:orientation="vertical"
-    tools:context="br.ufc.ubicomp.mihealth.activities.cadastro_usuario">
+    tools:context="br.ufc.ubicomp.mihealth.activities.UserRegistrationActivity">
 
 
     <TextView
