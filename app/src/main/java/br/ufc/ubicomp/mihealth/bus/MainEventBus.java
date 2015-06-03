@@ -1,5 +1,7 @@
 package br.ufc.ubicomp.mihealth.bus;
 
+import android.util.Log;
+
 import br.ufc.ubicomp.mihealth.events.MiEvent;
 import de.greenrobot.event.EventBus;
 

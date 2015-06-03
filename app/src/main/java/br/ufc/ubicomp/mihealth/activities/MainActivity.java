@@ -4,24 +4,44 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
+import android.renderscript.Element;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.ImageButton;
+=======
+import android.widget.TextView;
+>>>>>>> origin/master
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.fitness.Fitness;
+import com.google.android.gms.fitness.data.DataPoint;
+import com.google.android.gms.fitness.data.DataSource;
+import com.google.android.gms.fitness.data.DataType;
+import com.google.android.gms.fitness.data.Field;
+import com.google.android.gms.fitness.data.Value;
+import com.google.android.gms.fitness.request.DataSourcesRequest;
+import com.google.android.gms.fitness.request.OnDataPointListener;
+import com.google.android.gms.fitness.request.SensorRequest;
+import com.google.android.gms.fitness.result.DataSourcesResult;
+
+import java.util.concurrent.TimeUnit;
 
 import br.ufc.ubicomp.mihealth.R;
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
 import br.ufc.ubicomp.mihealth.events.FinalizeEvent;
 import br.ufc.ubicomp.mihealth.events.GenericEvent;
+import br.ufc.ubicomp.mihealth.events.HeartMonitorEvent;
 import br.ufc.ubicomp.mihealth.events.LocationEvent;
+import br.ufc.ubicomp.mihealth.events.RegisterDataListenerEvent;
 import br.ufc.ubicomp.mihealth.events.RequestSensorClientEvent;
 import br.ufc.ubicomp.mihealth.events.ResponseSensorClientEvent;
 import br.ufc.ubicomp.mihealth.services.MiHeartMonitorService;
@@ -36,10 +56,15 @@ public class MainActivity extends Activity {
 
     // TODO remover essa dependencia
     private GoogleApiClient mClient = null;
+    private OnDataPointListener mListener;
 
     private static final int    REQUEST_OAUTH = 1;
     private static final String AUTH_PENDING = "auth_state_pending";
     private boolean authInProgress = false;
+
+    public MainActivity() {
+        MainEventBus.register(this);
+    }
 
     @Override
     protected void onStart() {
@@ -53,7 +78,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
         outState.putBoolean(AUTH_PENDING, authInProgress);
     }
 
@@ -82,10 +106,11 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        MainEventBus.register(this);
-
         Intent myIntent = new Intent(this, MiService.class);
         this.startService(myIntent);
+
+        Intent heartMonitorService = new Intent(this, MiHeartMonitorService.class);
+        this.startService(heartMonitorService);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -95,6 +120,7 @@ public class MainActivity extends Activity {
         }
 
         buildFitnessClient();
+<<<<<<< HEAD
 
         Intent heartMonitorService = new Intent(this, MiHeartMonitorService.class);
         this.startService(heartMonitorService);
@@ -138,6 +164,8 @@ public class MainActivity extends Activity {
             }
         });
 
+=======
+>>>>>>> origin/master
     }
 
 
@@ -146,6 +174,11 @@ public class MainActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    public void onEvent(HeartMonitorEvent event) {
+        TextView heartFreq = (TextView) findViewById(R.id.heartFreq);
+        heartFreq.setText(event.heartFrequencyStr);
     }
 
     /**
@@ -163,45 +196,39 @@ public class MainActivity extends Activity {
     public void onEvent(RequestSensorClientEvent event) {
         // TODO substituir por um wrapper
         Toast.makeText(this, "RequestSensorClient event", Toast.LENGTH_SHORT).show();
-        MainEventBus.notify(new ResponseSensorClientEvent(mClient));
+        MainEventBus.notifyStick(new ResponseSensorClientEvent(mClient));
+    }
+
+    public void onEvent(RegisterDataListenerEvent event) {
+        registerFitnessDataListener(event.dataSource, DataType.TYPE_HEART_RATE_BPM);
     }
 
     @Override
     protected void onDestroy() {
         // Sinaliza os componentes que a aplicação se encerrou
-        MainEventBus.notify(new FinalizeEvent());
+        MainEventBus.notifyStick(new FinalizeEvent());
     }
 
     public void onClick(View view) {
         // TODO Código de teste apenas
-        MainEventBus.notify(new GenericEvent());
+        MainEventBus.notifyStick(new GenericEvent());
     }
 
-    /**
-     *  Build a {@link GoogleApiClient} that will authenticate the user and allow the application
-     *  to connect to Fitness APIs. The scopes included should match the scopes your app needs
-     *  (see documentation for details). Authentication will occasionally fail intentionally,
-     *  and in those cases, there will be a known resolution, which the OnConnectionFailedListener()
-     *  can address. Examples of this include the user never having signed in before, or having
-     *  multiple accounts on the device and needing to specify which account to use, etc.
-     */
     private void buildFitnessClient() {
         // Create the Google API Client
         mClient = new GoogleApiClient.Builder(this)
                 .addApi(Fitness.SENSORS_API)
-                .addScope(new Scope(Scopes.FITNESS_LOCATION_READ))
+                .addScope(new Scope(Scopes.FITNESS_BODY_READ))
                 .addConnectionCallbacks(
                         new GoogleApiClient.ConnectionCallbacks() {
                             @Override
                             public void onConnected(Bundle bundle) {
                                 Toast.makeText(MainActivity.this, "Connected!!!", Toast.LENGTH_SHORT).show();
-                                // Now you can make calls to the Fitness APIs.
-                                // Put application specific code here.
+
+                                findFitnessDataSources();
                             }
                             @Override
                             public void onConnectionSuspended(int i) {
-                                // If your connection to the sensor gets lost at some point,
-                                // you'll be able to determine the reason and react to it here.
                                 if (i == GoogleApiClient.ConnectionCallbacks.CAUSE_NETWORK_LOST) {
                                     Toast.makeText(MainActivity.this, "Connection lost.  Cause: Network Lost.", Toast.LENGTH_SHORT).show();
                                 } else if (i == GoogleApiClient.ConnectionCallbacks.CAUSE_SERVICE_DISCONNECTED) {
@@ -217,13 +244,9 @@ public class MainActivity extends Activity {
                             public void onConnectionFailed(ConnectionResult result) {
                                 Toast.makeText(MainActivity.this, "Connection failed. Cause: " + result.toString(), Toast.LENGTH_SHORT).show();
                                 if (!result.hasResolution()) {
-                                    // Show the localized error dialog
                                     GooglePlayServicesUtil.getErrorDialog(result.getErrorCode(), MainActivity.this, 0).show();
                                     return;
                                 }
-                                // The failure has a resolution. Resolve it.
-                                // Called typically when the app is not yet authorized, and an
-                                // authorization dialog is displayed to the user.
                                 if (!authInProgress) {
                                     try {
                                         Toast.makeText(MainActivity.this, "Attempting to resolve failed connection", Toast.LENGTH_SHORT).show();
@@ -237,5 +260,64 @@ public class MainActivity extends Activity {
                         }
                 )
                 .build();
+    }
+
+    private void findFitnessDataSources() {
+        // [START find_data_sources]
+        Fitness.SensorsApi.findDataSources(mClient, new DataSourcesRequest.Builder()
+                .setDataTypes(DataType.TYPE_HEART_RATE_BPM)
+                .setDataSourceTypes(DataSource.TYPE_RAW)
+                .build())
+                .setResultCallback(new ResultCallback<DataSourcesResult>() {
+                    @Override
+                    public void onResult(DataSourcesResult dataSourcesResult) {
+                        Toast.makeText(MainActivity.this,"Result: " + dataSourcesResult.getStatus().toString(), Toast.LENGTH_SHORT).show();
+
+                        for (DataSource dataSource : dataSourcesResult.getDataSources()) {
+                            Toast.makeText(MainActivity.this,"Data source found: " + dataSource.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this,"Data Source type: " + dataSource.getDataType().getName(), Toast.LENGTH_SHORT).show();
+                            if (dataSource.getDataType().equals(DataType.TYPE_HEART_RATE_BPM) && mListener == null) {
+                                Toast.makeText(MainActivity.this,"Data source for TYPE_HEART_RATE_BPM found!  Registering.", Toast.LENGTH_SHORT).show();
+                                registerFitnessDataListener(dataSource, DataType.TYPE_HEART_RATE_BPM);
+                            }
+                        }
+                    }
+                });
+    }
+
+    /**
+     * Register a listener with the Sensors API for the provided {@link DataSource} and
+     * {@link DataType} combo.
+     */
+    private void registerFitnessDataListener(DataSource dataSource, DataType dataType) {
+        // [START register_data_listener]
+        mListener = new OnDataPointListener() {
+            @Override
+            public void onDataPoint(DataPoint dataPoint) {
+                for (Field field : dataPoint.getDataType().getFields()) {
+                    Value val = dataPoint.getValue(field);
+                    MainEventBus.notifyStick(new HeartMonitorEvent(val.toString()));
+                }
+            }
+        };
+
+        Fitness.SensorsApi.add(
+                mClient,
+                new SensorRequest.Builder()
+                        .setDataSource(dataSource) // Optional but recommended for custom data sets.
+                        .setDataType(dataType) // Can't be omitted.
+                        .setSamplingRate(10, TimeUnit.SECONDS)
+                        .build(),
+                mListener)
+                .setResultCallback(new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(Status status) {
+                        if (status.isSuccess()) {
+                            Toast.makeText(MainActivity.this,"Listener registered!",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this,"Listener not registered!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }
