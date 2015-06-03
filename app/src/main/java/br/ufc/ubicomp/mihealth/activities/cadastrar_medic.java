@@ -1,20 +1,68 @@
 package br.ufc.ubicomp.mihealth.activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 import br.ufc.ubicomp.mihealth.R;
 
 
-public class cadastrar_medic extends ActionBarActivity {
+public class cadastrar_medic extends Activity {
 
+    ImageButton dados_us;
+    ImageButton cad_med;
+    ImageButton cad_us;
+    ImageButton ajust;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_medic);
+
+        dados_us = (ImageButton) findViewById(R.id.dados_usuario);
+        cad_med = (ImageButton) findViewById(R.id.cad_med);
+        cad_us = (ImageButton) findViewById(R.id.cad_cont);
+        ajust = (ImageButton) findViewById(R.id.ajustes);
+
+        dados_us.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent(cadastrar_medic.this, UserRegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cad_med.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent(cadastrar_medic.this, MedicinesActivity.class);
+                startActivity(intent);
+            }
+
+
+        });
+
+        cad_us.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent(cadastrar_medic.this, lista_contato.class);
+                startActivity(intent);
+            }
+        });
+        ajust.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent(cadastrar_medic.this, master_footer.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
 
 
     @Override

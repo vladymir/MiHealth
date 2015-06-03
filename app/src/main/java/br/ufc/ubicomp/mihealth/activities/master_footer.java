@@ -1,5 +1,7 @@
 package br.ufc.ubicomp.mihealth.activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,17 +9,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-
 import br.ufc.ubicomp.mihealth.R;
 
 
-public class master_footer extends ActionBarActivity {
+public class master_footer extends Activity {
 
     ImageButton dados_us;
     ImageButton cad_med;
     ImageButton cad_us;
     ImageButton ajust;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,40 +28,44 @@ public class master_footer extends ActionBarActivity {
         cad_us = (ImageButton) findViewById(R.id.cad_cont);
         ajust = (ImageButton) findViewById(R.id.ajustes);
 
-        // chamar o metodo de mostrar tela ganho (Index)
+
 
         dados_us.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                exibirDados();
-            }
+                    Intent intent = new Intent(master_footer.this, UserRegistrationActivity.class);
+                    startActivity(intent);
+                }
         });
 
-        // chamar o metodo de mostrar tela gasto
         cad_med.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                exibirListMedic();
+                Intent intent = new Intent(master_footer.this, MedicinesActivity.class);
+                startActivity(intent);
             }
+
+
         });
 
-        // chamar o metodo de mostrar tela meta
         cad_us.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                exibirListCont();
+                Intent intent = new Intent(master_footer.this, lista_contato.class);
+                startActivity(intent);
             }
         });
         ajust.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                exibirAjustes();
+                Intent intent = new Intent(master_footer.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
     }
 
-    // metodo exibir dados do usuario
+    /* metodo exibir dados do usuario
     public void exibirDados() {
         setContentView(R.layout.activity_cadastrar_usuario);
     }
@@ -77,9 +81,9 @@ public class master_footer extends ActionBarActivity {
     }
     // metodo exibir ajustes
     public void exibirAjustes() {
-        setContentView(R.layout.activity_master_top);
+        setContentView(R.layout.activity_master_footer);
     }
-
+*/
 
 
     @Override

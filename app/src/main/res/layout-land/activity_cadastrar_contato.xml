@@ -85,11 +85,61 @@
         android:enabled="false"
         android:focusable="false"
         android:focusableInTouchMode="false" />
-    <include
-        android:id="@+id/rodape_view"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        style="@android:style/ButtonBar"
+        tools:context="br.ufc.ubicomp.mihealth.activities.master_footer"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/linearLayout2"
+        android:orientation="vertical"
         android:layout_height="fill_parent"
-        layout="@layout/activity_master_footer"
-        android:layout_weight="1" />
+        android:layout_width="wrap_content"
+        android:minHeight="@dimen/abc_action_bar_default_height_material"
+        android:background="@color/colorPrimary"
+        android:alpha="1"
+        android:focusable="false"
+        android:weightSum="4" >
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dados_usuario"
+            android:onClick="onClick"
+            android:src="@mipmap/ic_action_person"
+            android:contentDescription="@string/usuario"
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cad_med"
+            android:src="@mipmap/ic_action_new"
+            android:onClick="onClick"
+            android:contentDescription="@string/Medicamentos"
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cad_cont"
+            android:src="@mipmap/ic_action_add_person"
+            android:onClick="onClick"
+            android:contentDescription="@string/Contatos"
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ajustes"
+            android:src="@mipmap/ic_action_settings"
+            android:onClick="onClick"
+            android:contentDescription="@string/ajustes"
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
 
 </LinearLayout>

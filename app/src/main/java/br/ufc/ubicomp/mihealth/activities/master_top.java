@@ -1,5 +1,6 @@
 package br.ufc.ubicomp.mihealth.activities;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,7 +9,7 @@ import android.view.MenuItem;
 import br.ufc.ubicomp.mihealth.R;
 
 
-public class master_top extends ActionBarActivity {
+public class master_top extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

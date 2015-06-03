@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -28,6 +29,10 @@ import br.ufc.ubicomp.mihealth.services.MiService;
 
 
 public class MainActivity extends Activity {
+    public ImageButton dados_us;
+    public ImageButton cad_med;
+    public ImageButton cad_us;
+    public ImageButton ajust;
 
     // TODO remover essa dependencia
     private GoogleApiClient mClient = null;
@@ -93,7 +98,48 @@ public class MainActivity extends Activity {
 
         Intent heartMonitorService = new Intent(this, MiHeartMonitorService.class);
         this.startService(heartMonitorService);
+
+
+            dados_us = (ImageButton) findViewById(R.id.dados_usuario);
+            cad_med = (ImageButton) findViewById(R.id.cad_med);
+            cad_us = (ImageButton) findViewById(R.id.cad_cont);
+            ajust = (ImageButton) findViewById(R.id.ajustes);
+
+        dados_us.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, UserRegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cad_med.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MedicinesActivity.class);
+                startActivity(intent);
+            }
+
+
+        });
+
+        cad_us.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, lista_contato.class);
+                startActivity(intent);
+            }
+        });
+        ajust.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, master_footer.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
