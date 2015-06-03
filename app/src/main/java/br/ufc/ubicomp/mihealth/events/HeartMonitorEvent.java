@@ -5,11 +5,19 @@ package br.ufc.ubicomp.mihealth.events;
  */
 public class HeartMonitorEvent extends MiEvent {
 
-    public final double heartFrequency;
+    public double heartFrequency;
+    // TODO Remove
+    @Deprecated
+    public String heartFrequencyStr;
 
     public HeartMonitorEvent(Double heartFrequency) {
         super("Heart monitor event");
         this.heartFrequency = heartFrequency;
+    }
+
+    public HeartMonitorEvent(String heartFrequency) {
+        super("Heart monitor event");
+        this.heartFrequencyStr = heartFrequency;
     }
 
 }
