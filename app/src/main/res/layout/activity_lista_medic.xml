@@ -78,7 +78,7 @@
         android:focusable="false"
         style="@android:style/ButtonBar"
         android:weightSum="4"
-        tools:context="br.ufc.ubicomp.mihealth.activities.master_footer">
+        tools:context="br.ufc.ubicomp.mihealth.activities.MasterFooter">
 
 
         <ImageButton

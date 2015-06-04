@@ -2,12 +2,13 @@ package br.ufc.ubicomp.mihealth.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import br.ufc.ubicomp.mihealth.R;
 
@@ -17,6 +18,8 @@ public class UserRegistrationActivity extends Activity {
     ImageButton cad_med;
     ImageButton cad_us;
     ImageButton ajust;
+    Button ok;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +29,18 @@ public class UserRegistrationActivity extends Activity {
         cad_med = (ImageButton) findViewById(R.id.cad_med);
         cad_us = (ImageButton) findViewById(R.id.cad_cont);
         ajust = (ImageButton) findViewById(R.id.ajustes);
+        ok = (Button) findViewById(R.id.butOk);
+
+        ok.setOnClickListener(new View.OnClickListener()  {
+
+            public void onClick(View v) {
+
+                Toast.makeText(UserRegistrationActivity.this, "Dados Cadastrados Com Sucesso" , Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(UserRegistrationActivity.this, MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
 
@@ -50,14 +65,14 @@ public class UserRegistrationActivity extends Activity {
         cad_us.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(UserRegistrationActivity.this, lista_contato.class);
+                Intent intent = new Intent(UserRegistrationActivity.this, ListContactsActivity.class);
                 startActivity(intent);
             }
         });
         ajust.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(UserRegistrationActivity.this, master_footer.class);
+                Intent intent = new Intent(UserRegistrationActivity.this, MasterFooter.class);
                 startActivity(intent);
             }
         });

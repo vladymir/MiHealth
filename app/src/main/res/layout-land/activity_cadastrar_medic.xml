@@ -3,21 +3,14 @@
     android:layout_width="wrap_content"
     android:layout_height="fill_parent"
     android:orientation="horizontal"
-    android:weightSum="10"
-    tools:context="br.ufc.ubicomp.mihealth.activities.cadastrar_medic">
-
-    <include
-        android:id="@+id/top_view"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        layout="@layout/activity_master_top"
-        android:layout_weight="1" />
+    android:weightSum="12"
+    tools:context="br.ufc.ubicomp.mihealth.activities.MedicinesReg">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="8"
+        android:layout_height="fill_parent"
+        android:layout_weight="10"
         android:weightSum="7">
 
         <TextView
@@ -109,7 +102,7 @@
         android:focusableInTouchMode="false" />
     <LinearLayout
         style="@android:style/ButtonBar"
-        tools:context="br.ufc.ubicomp.mihealth.activities.master_footer"
+        tools:context="br.ufc.ubicomp.mihealth.activities.MasterFooter"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/linearLayout2"
@@ -120,7 +113,8 @@
         android:background="@color/colorPrimary"
         android:alpha="1"
         android:focusable="false"
-        android:weightSum="4" >
+        android:weightSum="4"
+        android:layout_weight="1">
 
         <ImageButton
             android:layout_width="wrap_content"

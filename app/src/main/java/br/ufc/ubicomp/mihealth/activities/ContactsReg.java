@@ -2,9 +2,7 @@ package br.ufc.ubicomp.mihealth.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,7 +10,7 @@ import android.widget.ImageButton;
 import br.ufc.ubicomp.mihealth.R;
 
 
-public class cadastrar_contato extends Activity {
+public class ContactsReg extends Activity {
 
     ImageButton dados_us;
     ImageButton cad_med;
@@ -34,7 +32,7 @@ public class cadastrar_contato extends Activity {
         dados_us.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(cadastrar_contato.this, UserRegistrationActivity.class);
+                Intent intent = new Intent(ContactsReg.this, UserRegistrationActivity.class);
                 startActivity(intent);
             }
         });
@@ -42,7 +40,7 @@ public class cadastrar_contato extends Activity {
         cad_med.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(cadastrar_contato.this, MedicinesActivity.class);
+                Intent intent = new Intent(ContactsReg.this, MedicinesActivity.class);
                 startActivity(intent);
             }
 
@@ -52,14 +50,14 @@ public class cadastrar_contato extends Activity {
         cad_us.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(cadastrar_contato.this, lista_contato.class);
+                Intent intent = new Intent(ContactsReg.this, ListContactsActivity.class);
                 startActivity(intent);
             }
         });
         ajust.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(cadastrar_contato.this, master_footer.class);
+                Intent intent = new Intent(ContactsReg.this, MasterFooter.class);
                 startActivity(intent);
             }
         });

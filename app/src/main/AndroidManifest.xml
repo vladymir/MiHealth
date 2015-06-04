@@ -58,19 +58,19 @@
         </activity>
 
         <activity
-            android:name=".activities.cadastrar_contato"
+            android:name=".activities.ContactsReg"
             android:label="@string/title_activity_cadastro_usuario" >
         </activity>
         <activity
-            android:name=".activities.cadastrar_medic"
+            android:name=".activities.MedicinesReg"
             android:label="@string/title_activity_lista_medic" >
         </activity>
         <activity
-            android:name=".activities.lista_contato"
+            android:name=".activities.ListContactsActivity"
             android:label="@string/title_activity_lista_medic" >
         </activity>
         <activity
-            android:name=".activities.master_footer"
+            android:name=".activities.MasterFooter"
             android:label="@string/title_activity_lista_medic" >
         </activity>
         <activity

@@ -2,17 +2,15 @@ package br.ufc.ubicomp.mihealth.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-
 import br.ufc.ubicomp.mihealth.R;
 
 
-public class cadastrar_medic extends Activity {
+public class MasterFooter extends Activity {
 
     ImageButton dados_us;
     ImageButton cad_med;
@@ -21,25 +19,27 @@ public class cadastrar_medic extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastrar_medic);
+        setContentView(R.layout.activity_master_footer);
 
         dados_us = (ImageButton) findViewById(R.id.dados_usuario);
         cad_med = (ImageButton) findViewById(R.id.cad_med);
         cad_us = (ImageButton) findViewById(R.id.cad_cont);
         ajust = (ImageButton) findViewById(R.id.ajustes);
 
+
+
         dados_us.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(cadastrar_medic.this, UserRegistrationActivity.class);
-                startActivity(intent);
-            }
+                    Intent intent = new Intent(MasterFooter.this, UserRegistrationActivity.class);
+                    startActivity(intent);
+                }
         });
 
         cad_med.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(cadastrar_medic.this, MedicinesActivity.class);
+                Intent intent = new Intent(MasterFooter.this, MedicinesActivity.class);
                 startActivity(intent);
             }
 
@@ -49,14 +49,14 @@ public class cadastrar_medic extends Activity {
         cad_us.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(cadastrar_medic.this, lista_contato.class);
+                Intent intent = new Intent(MasterFooter.this, ListContactsActivity.class);
                 startActivity(intent);
             }
         });
         ajust.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(cadastrar_medic.this, master_footer.class);
+                Intent intent = new Intent(MasterFooter.this, MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -68,7 +68,7 @@ public class cadastrar_medic extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_cadastrar_medic, menu);
+        getMenuInflater().inflate(R.menu.menu_master_footer, menu);
         return true;
     }
 

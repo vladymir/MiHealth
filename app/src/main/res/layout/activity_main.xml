@@ -24,7 +24,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:weightSum="2"
-        android:layout_weight="4">
+        android:layout_weight="4"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -37,20 +38,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Frequência Cardíaca"
-                android:id="@+id/textView3"
+                android:text="@string/fc"
+                android:id="@+id/hearthBeat"
                 android:layout_gravity="center_horizontal|top"
                 style="@style/Theme.MyTheme" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/heartFreq"
+                android:id="@+id/heartBeatB"
                 android:layout_gravity="center"
                 style="@style/Theme.MyTheme"
                 android:textStyle="bold"
                 android:textSize="@dimen/abc_text_size_display_3_material"
                 android:text="--"
+                android:maxLength="4"
                 android:gravity="center_horizontal" />
 
             <TextView
@@ -73,25 +75,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Temperatura"
-                android:id="@+id/textView9"
+                android:text="@string/temperatura"
+                android:id="@+id/temp"
                 android:layout_gravity="center_horizontal|top"
                 style="@style/Theme.MyTheme" />
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText5"
+                android:id="@+id/tempB"
                 android:layout_gravity="center"
                 style="@style/Theme.MyTheme"
                 android:textSize="@dimen/abc_text_size_display_3_material"
                 android:text="--"
+                android:maxLength="4"
                 android:textStyle="bold"
                 android:gravity="center_horizontal" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ºC"
-                android:id="@+id/textView7"
+                android:id="@+id/tempC"
                 android:layout_gravity="center_horizontal|bottom"
                 style="@style/Theme.MyTheme" />
 
@@ -105,7 +108,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:weightSum="2"
-        android:layout_weight="4">
+        android:layout_weight="4"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -118,25 +122,29 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Próxima Medicação"
-                android:id="@+id/textView5"
+                android:text="@string/proxMedic"
+                android:id="@+id/proxMedicA"
                 android:layout_gravity="center_horizontal|top"
                 style="@style/Theme.MyTheme" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText3"
+                android:id="@+id/proxMedicB"
                 android:layout_gravity="center"
-                android:text="Diazepan"
+                android:text="--"
+                android:textSize="@dimen/abc_text_size_display_2_material"
+                android:maxLength="10"
                 android:gravity="center_horizontal"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText6"
-                android:text="20hs"
+                android:id="@+id/proxMedicC"
+                android:text="--"
+                android:textSize="@dimen/abc_text_size_display_2_material"
+                android:maxLength="10"
                 android:gravity="center_horizontal"
                 android:textStyle="bold" />
 
@@ -156,26 +164,27 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Temperatura Corporal"
-                android:id="@+id/textView6"
+                android:text="@string/tempCorp"
+                android:id="@+id/tempCorpA"
                 android:layout_gravity="center_horizontal|top"
                 style="@style/Theme.MyTheme" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText4"
+                android:id="@+id/tempCorpB"
                 android:layout_gravity="center"
                 style="@style/Theme.MyTheme"
                 android:textStyle="bold"
                 android:textSize="@dimen/abc_text_size_display_3_material"
                 android:text="--"
+                android:maxLength="4"
                 android:gravity="center_horizontal" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ºC"
-                android:id="@+id/textView8"
+                android:id="@+id/tempCorpC"
                 android:layout_gravity="center_horizontal|bottom"
                 style="@style/Theme.MyTheme" />
 
@@ -184,7 +193,7 @@
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/b_tb"
+        android:id="@+id/b_tb10"
         android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -193,8 +202,8 @@
         android:alpha="1"
         android:focusable="false"
         style="@android:style/ButtonBar"
-        android:weightSum="4"
-        tools:context="br.ufc.ubicomp.mihealth.activities.master_footer">
+        android:weightSum="5"
+        tools:context="br.ufc.ubicomp.mihealth.activities.MasterFooter">
 
 
         <ImageButton
@@ -215,6 +224,15 @@
             android:src="@mipmap/ic_action_new"
             android:onClick="onClick"
             android:contentDescription="@string/Medicamentos"
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/main"
+            android:src="@mipmap/logobic"
+            android:onClick="onClick"
+            android:contentDescription="@string/app_name"
             android:layout_weight="1"
             android:background="@android:color/transparent" />
 

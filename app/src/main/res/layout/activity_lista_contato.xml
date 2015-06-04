@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context="br.ufc.ubicomp.mihealth.activities.lista_contato">
+    tools:context="br.ufc.ubicomp.mihealth.activities.ListContactsActivity">
 
    <TextView
     android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
 
     <LinearLayout
         style="@android:style/ButtonBar"
-        tools:context="br.ufc.ubicomp.mihealth.activities.master_footer"
+        tools:context="br.ufc.ubicomp.mihealth.activities.MasterFooter"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/linearLayout2"

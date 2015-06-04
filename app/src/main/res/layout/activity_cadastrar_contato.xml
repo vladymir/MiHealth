@@ -4,14 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context="br.ufc.ubicomp.mihealth.activities.cadastrar_contato">
-
-    <include
-        android:id="@+id/top_view"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/activity_master_top"
-        android:layout_weight="0" />
+    tools:context="br.ufc.ubicomp.mihealth.activities.ContactsReg">
 
     <TextView
         style="@style/Theme.MyTheme"
@@ -87,7 +80,7 @@
 
     <LinearLayout
         style="@android:style/ButtonBar"
-        tools:context="br.ufc.ubicomp.mihealth.activities.master_footer"
+        tools:context="br.ufc.ubicomp.mihealth.activities.MasterFooter"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/linearLayout2"

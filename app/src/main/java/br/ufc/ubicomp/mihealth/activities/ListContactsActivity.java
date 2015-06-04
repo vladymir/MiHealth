@@ -2,17 +2,16 @@ package br.ufc.ubicomp.mihealth.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
+
 import br.ufc.ubicomp.mihealth.R;
 
 
-public class master_footer extends Activity {
+public class ListContactsActivity extends Activity {
 
     ImageButton dados_us;
     ImageButton cad_med;
@@ -21,27 +20,25 @@ public class master_footer extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_master_footer);
+        setContentView(R.layout.activity_lista_contato);
 
         dados_us = (ImageButton) findViewById(R.id.dados_usuario);
         cad_med = (ImageButton) findViewById(R.id.cad_med);
         cad_us = (ImageButton) findViewById(R.id.cad_cont);
         ajust = (ImageButton) findViewById(R.id.ajustes);
 
-
-
         dados_us.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                    Intent intent = new Intent(master_footer.this, UserRegistrationActivity.class);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(ListContactsActivity.this, UserRegistrationActivity.class);
+                startActivity(intent);
+            }
         });
 
         cad_med.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(master_footer.this, MedicinesActivity.class);
+                Intent intent = new Intent(ListContactsActivity.this, MedicinesActivity.class);
                 startActivity(intent);
             }
 
@@ -51,45 +48,25 @@ public class master_footer extends Activity {
         cad_us.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(master_footer.this, lista_contato.class);
+                Intent intent = new Intent(ListContactsActivity.this, ListContactsActivity.class);
                 startActivity(intent);
             }
         });
         ajust.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(master_footer.this, MainActivity.class);
+                Intent intent = new Intent(ListContactsActivity.this, MasterFooter.class);
                 startActivity(intent);
             }
         });
 
     }
 
-    /* metodo exibir dados do usuario
-    public void exibirDados() {
-        setContentView(R.layout.activity_cadastrar_usuario);
-    }
-
-    // metodo exibir lista de medicamentos
-    public void exibirListMedic() {
-        setContentView(R.layout.activity_lista_medic);
-    }
-
-    // metodo exibir lista de contatos
-    public void exibirListCont() {
-        setContentView(R.layout.activity_lista_contato);
-    }
-    // metodo exibir ajustes
-    public void exibirAjustes() {
-        setContentView(R.layout.activity_master_footer);
-    }
-*/
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_master_footer, menu);
+        getMenuInflater().inflate(R.menu.menu_lista_contato, menu);
         return true;
     }
 

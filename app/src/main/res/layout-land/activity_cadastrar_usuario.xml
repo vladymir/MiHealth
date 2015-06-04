@@ -3,102 +3,109 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="10"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context="br.ufc.ubicomp.mihealth.activities.UserRegistrationActivity">
 
 
-    <TextView
-        style="@style/Theme.MyTheme"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Cadastrar"
-        android:id="@+id/textView12"
-        android:layout_gravity="center_horizontal"
-        android:textSize="@dimen/abc_text_size_display_3_material"
-        android:textStyle="bold"
-        android:layout_weight="2" />
+        android:layout_height="fill_parent"
+        android:layout_weight="10">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/Nome"
-        style="@style/Theme.MyTheme"
-        android:textSize="@dimen/abc_text_size_display_1_material"
-        android:id="@+id/textView10"
-        android:layout_weight="1" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        style="@style/Theme.MyTheme"
-        android:textSize="@dimen/abc_text_size_display_1_material"
-        android:id="@+id/editText"
-        android:layout_weight="1" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/dataNasc"
-        style="@style/Theme.MyTheme"
-        android:textSize="@dimen/abc_text_size_display_1_material"
-        android:id="@+id/textView11"
-        android:layout_weight="1" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        style="@style/Theme.MyTheme"
-        android:textSize="@dimen/abc_text_size_display_1_material"
-        android:id="@+id/editText7"
-        android:layout_weight="1" />
-
-    <RadioGroup
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        android:layout_weight="2">
+        <TextView
+            style="@style/Theme.MyTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Cadastrar"
+            android:id="@+id/textView12"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/abc_text_size_display_3_material"
+            android:textStyle="bold"
+            android:layout_weight="2" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/sexo"
+            android:text="@string/Nome"
             style="@style/Theme.MyTheme"
             android:textSize="@dimen/abc_text_size_display_1_material"
-            android:id="@+id/textView2"
+            android:id="@+id/textView10"
             android:layout_weight="1" />
 
-        <RadioButton
-            android:layout_width="wrap_content"
+        <EditText
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="F"
+            android:inputType="textPersonName"
+            android:ems="10"
             style="@style/Theme.MyTheme"
             android:textSize="@dimen/abc_text_size_display_1_material"
-            android:textStyle="bold"
-            android:id="@+id/radioButton2"
+            android:id="@+id/editText"
             android:layout_weight="1" />
 
-        <RadioButton
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="M"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/dataNasc"
             style="@style/Theme.MyTheme"
             android:textSize="@dimen/abc_text_size_display_1_material"
-            android:textStyle="bold"
-            android:id="@+id/radioButton3"/>
+            android:id="@+id/textView11"
+            android:layout_weight="1" />
 
-    </RadioGroup>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            style="@style/Theme.MyTheme"
+            android:textSize="@dimen/abc_text_size_display_1_material"
+            android:id="@+id/editText7"
+            android:layout_weight="1" />
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:layout_weight="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/sexo"
+                style="@style/Theme.MyTheme"
+                android:textSize="@dimen/abc_text_size_display_1_material"
+                android:id="@+id/textView2"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="F"
+                style="@style/Theme.MyTheme"
+                android:textSize="@dimen/abc_text_size_display_1_material"
+                android:textStyle="bold"
+                android:id="@+id/radioButton2"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="M"
+                style="@style/Theme.MyTheme"
+                android:textSize="@dimen/abc_text_size_display_1_material"
+                android:textStyle="bold"
+                android:id="@+id/radioButton3"/>
+
+        </RadioGroup>
+    </LinearLayout>
 
     <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
         android:text="@string/ok"
         android:background="@android:color/holo_green_light"
         android:id="@+id/butOk"
@@ -113,13 +120,13 @@
 
     <LinearLayout
         style="@android:style/ButtonBar"
-        tools:context="br.ufc.ubicomp.mihealth.activities.master_footer"
+        tools:context="br.ufc.ubicomp.mihealth.activities.MasterFooter"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/linearLayout2"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
         android:minHeight="@dimen/abc_action_bar_default_height_material"
         android:background="@color/colorPrimary"
         android:alpha="1"

@@ -2,7 +2,6 @@ package br.ufc.ubicomp.mihealth.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,14 +48,14 @@ public class MedicinesActivity extends Activity {
         cad_us.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(MedicinesActivity.this, lista_contato.class);
+                Intent intent = new Intent(MedicinesActivity.this, ListContactsActivity.class);
                 startActivity(intent);
             }
         });
         ajust.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(MedicinesActivity.this, master_footer.class);
+                Intent intent = new Intent(MedicinesActivity.this, MasterFooter.class);
                 startActivity(intent);
             }
         });

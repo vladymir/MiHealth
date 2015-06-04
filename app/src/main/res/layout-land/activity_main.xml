@@ -1,186 +1,209 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:weightSum="6"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
     android:baselineAligned="false">
-    <include
-        android:id="@+id/top_view"
+
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        layout="@layout/activity_master_top"
-        android:layout_weight="0" />
+        android:layout_height="wrap_content"
+        android:layout_weight="6">
 
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:weightSum="2"
-        android:layout_weight="3">
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:padding="@dimen/abc_text_size_body_1_material"
-            android:background="@drawable/back1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fc"
-                android:id="@+id/textViewFC"
-                android:layout_gravity="center_horizontal|top"
-                style="@style/Theme.MyTheme" />
-
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/editTextFC"
-                android:layout_gravity="center"
-                style="@style/Theme.MyTheme"
-                android:textStyle="bold"
-                android:textSize="@dimen/abc_text_size_display_3_material"
-                android:text="70"
-                android:gravity="center_horizontal" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="bpm"
-                android:id="@+id/textView4"
-                android:layout_gravity="center_horizontal|bottom"
-                style="@style/Theme.MyTheme" />
-        </LinearLayout>
+        <TextView
+            style="@style/Theme.MyTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:id="@+id/textView3"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/abc_text_size_display_3_material"
+            android:layout_weight="2"
+            android:textStyle="bold" />
 
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:background="@drawable/back1"
-            android:padding="@dimen/abc_text_size_body_1_material">
+            android:weightSum="2"
+            android:layout_weight="3">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/temperatura"
-                android:id="@+id/textViewTemperatura"
-                android:layout_gravity="center_horizontal|top"
-                style="@style/Theme.MyTheme" />
-            <EditText
+            <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/editTextTemperatura"
-                android:layout_gravity="center"
-                style="@style/Theme.MyTheme"
-                android:textSize="@dimen/abc_text_size_display_3_material"
-                android:text="28"
-                android:textStyle="bold"
-                android:gravity="center_horizontal" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ºC"
-                android:id="@+id/textView7"
-                android:layout_gravity="center_horizontal|bottom"
-                style="@style/Theme.MyTheme" />
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:padding="@dimen/abc_text_size_body_1_material"
+                android:background="@drawable/back1">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fc"
+                    android:id="@+id/hearthBeat"
+                    android:layout_gravity="center_horizontal|top"
+                    style="@style/Theme.MyTheme" />
 
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/heartBeatB"
+                    android:layout_gravity="center"
+                    style="@style/Theme.MyTheme"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/abc_text_size_display_3_material"
+                    android:text="--"
+                    android:maxLength="4"
+                    android:gravity="center_horizontal" />
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="bpm"
+                    android:id="@+id/textView4"
+                    android:layout_gravity="center_horizontal|bottom"
+                    style="@style/Theme.MyTheme" />
+            </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:weightSum="2"
-        android:layout_weight="3">
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:background="@drawable/back1"
-            android:padding="@dimen/abc_text_size_body_1_material">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/proxMedic"
-                android:id="@+id/textViewProxMedic"
-                android:layout_gravity="center_horizontal|top"
-                style="@style/Theme.MyTheme" />
-
-            <EditText
+            <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/editTextProxMedic"
-                android:layout_gravity="center"
-                android:text="Diazepan"
-                android:gravity="center_horizontal"
-                android:textStyle="bold" />
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:background="@drawable/back1"
+                android:padding="@dimen/abc_text_size_body_1_material">
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/editTextProxMedic2"
-                android:text="20hs"
-                android:gravity="center_horizontal"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/temperatura"
+                    android:id="@+id/temp"
+                    android:layout_gravity="center_horizontal|top"
+                    style="@style/Theme.MyTheme" />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tempB"
+                    android:layout_gravity="center"
+                    style="@style/Theme.MyTheme"
+                    android:textSize="@dimen/abc_text_size_display_3_material"
+                    android:text="--"
+                    android:maxLength="4"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ºC"
+                    android:id="@+id/tempC"
+                    android:layout_gravity="center_horizontal|bottom"
+                    style="@style/Theme.MyTheme" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:background="@drawable/back1"
-            android:padding="@dimen/abc_text_size_body_1_material"
-            >
+            android:weightSum="2"
+            android:layout_weight="3">
 
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tempCorp"
-                android:id="@+id/textViewTempCorp"
-                android:layout_gravity="center_horizontal|top"
-                style="@style/Theme.MyTheme" />
-
-            <EditText
+            <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/editTextTempCorp"
-                android:layout_gravity="center"
-                style="@style/Theme.MyTheme"
-                android:textStyle="bold"
-                android:textSize="@dimen/abc_text_size_display_3_material"
-                android:text="38"
-                android:gravity="center_horizontal" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ºC"
-                android:id="@+id/textView8"
-                android:layout_gravity="center_horizontal|bottom"
-                style="@style/Theme.MyTheme" />
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:background="@drawable/back1"
+                android:padding="@dimen/abc_text_size_body_1_material">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/proxMedic"
+                    android:id="@+id/proxMedicA"
+                    android:layout_gravity="center_horizontal|top"
+                    style="@style/Theme.MyTheme" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/proxMedicB"
+                    android:layout_gravity="center"
+                    android:text="--"
+                    android:textSize="@dimen/abc_text_size_display_2_material"
+                    android:maxLength="10"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/proxMedicC"
+                    android:text="--"
+                    android:textSize="@dimen/abc_text_size_display_2_material"
+                    android:maxLength="10"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:background="@drawable/back1"
+                android:padding="@dimen/abc_text_size_body_1_material"
+                >
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tempCorp"
+                    android:id="@+id/tempCorpA"
+                    android:layout_gravity="center_horizontal|top"
+                    style="@style/Theme.MyTheme" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tempCorpB"
+                    android:layout_gravity="center"
+                    style="@style/Theme.MyTheme"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/abc_text_size_display_3_material"
+                    android:text="--"
+                    android:maxLength="4"
+                    android:gravity="center_horizontal" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ºC"
+                    android:id="@+id/tempCorpC"
+                    android:layout_gravity="center_horizontal|bottom"
+                    style="@style/Theme.MyTheme" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
         style="@android:style/ButtonBar"
-        tools:context="br.ufc.ubicomp.mihealth.activities.master_footer"
+        tools:context="br.ufc.ubicomp.mihealth.activities.MasterFooter"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/linearLayout"
+        android:id="@+id/b_tb10L"
         android:orientation="vertical"
         android:layout_height="fill_parent"
         android:layout_width="wrap_content"
@@ -188,7 +211,7 @@
         android:background="@color/colorPrimary"
         android:alpha="1"
         android:focusable="false"
-        android:weightSum="4" >
+        android:weightSum="5" >
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -207,6 +230,15 @@
             android:src="@mipmap/ic_action_new"
             android:onClick="onClick"
             android:contentDescription="@string/Medicamentos"
+            android:layout_weight="1"
+            android:background="@android:color/transparent" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/main"
+            android:src="@mipmap/logobic"
+            android:onClick="onClick"
+            android:contentDescription="@string/app_name"
             android:layout_weight="1"
             android:background="@android:color/transparent" />
 
