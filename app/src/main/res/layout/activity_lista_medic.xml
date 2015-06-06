@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/ok"
-                android:id="@+id/button2"
+                android:id="@+id/okMed"
                 android:layout_weight="1"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
@@ -59,7 +59,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:id="@+id/button3"
+                android:id="@+id/addMed"
                 android:src="@mipmap/ic_action_new"
                 android:layout_weight="1"
                 android:alpha="1"
@@ -77,8 +77,8 @@
         android:alpha="1"
         android:focusable="false"
         style="@android:style/ButtonBar"
-        android:weightSum="4"
-        tools:context="br.ufc.ubicomp.mihealth.activities.MasterFooter">
+        android:weightSum="5"
+        >
 
 
         <ImageButton
@@ -89,7 +89,7 @@
             android:src="@mipmap/ic_action_person"
             android:contentDescription="@string/usuario"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
+            android:background="@drawable/selector_button"
             />
 
         <ImageButton
@@ -100,8 +100,16 @@
             android:onClick="onClick"
             android:contentDescription="@string/Medicamentos"
             android:layout_weight="1"
-            android:background="@android:color/transparent" />
-
+            android:background="@drawable/selector_button" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/main"
+            android:src="@mipmap/logobic"
+            android:onClick="onClick"
+            android:contentDescription="@string/app_name"
+            android:layout_weight="1"
+            android:background="@drawable/selector_button" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -110,7 +118,7 @@
             android:onClick="onClick"
             android:contentDescription="@string/Contatos"
             android:layout_weight="1"
-            android:background="@android:color/transparent" />
+            android:background="@drawable/selector_button" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -119,7 +127,7 @@
             android:onClick="onClick"
             android:contentDescription="@string/ajustes"
             android:layout_weight="1"
-            android:background="@android:color/transparent" />
+            android:background="@drawable/selector_button" />
 
 
 

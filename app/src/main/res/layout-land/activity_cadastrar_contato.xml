@@ -81,7 +81,6 @@
 
     <LinearLayout
         style="@android:style/ButtonBar"
-        tools:context="br.ufc.ubicomp.mihealth.activities.MasterFooter"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/linearLayout2"
@@ -92,7 +91,7 @@
         android:background="@color/colorPrimary"
         android:alpha="1"
         android:focusable="false"
-        android:weightSum="4" >
+        android:weightSum="5" >
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -102,7 +101,7 @@
             android:src="@mipmap/ic_action_person"
             android:contentDescription="@string/usuario"
             android:layout_weight="1"
-            android:background="@android:color/transparent" />
+            android:background="@drawable/selector_button" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -112,8 +111,16 @@
             android:onClick="onClick"
             android:contentDescription="@string/Medicamentos"
             android:layout_weight="1"
-            android:background="@android:color/transparent" />
-
+            android:background="@drawable/selector_button" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/main"
+            android:src="@mipmap/logobic"
+            android:onClick="onClick"
+            android:contentDescription="@string/app_name"
+            android:layout_weight="1"
+            android:background="@drawable/selector_button" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -122,7 +129,7 @@
             android:onClick="onClick"
             android:contentDescription="@string/Contatos"
             android:layout_weight="1"
-            android:background="@android:color/transparent" />
+            android:background="@drawable/selector_button" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -132,7 +139,7 @@
             android:onClick="onClick"
             android:contentDescription="@string/ajustes"
             android:layout_weight="1"
-            android:background="@android:color/transparent" />
+            android:background="@drawable/selector_button" />
     </LinearLayout>
 
 </LinearLayout>

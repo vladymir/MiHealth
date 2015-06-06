@@ -17,10 +17,15 @@
         android:allowBackup="true"
         android:icon="@mipmap/logob"
         android:label="@string/app_name"
-        android:theme="@style/Theme.MyTheme" >
+        android:theme="@style/Theme.MyTheme"
+
+        >
         <activity
             android:name=".activities.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:configChanges="screenSize|orientation"
+            >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -50,32 +55,46 @@
 
         <activity
             android:name=".activities.UserRegistrationActivity"
-            android:label="@string/title_activity_cadastro_usuario" >
+            android:label="@string/title_activity_cadastro_usuario"
+            android:configChanges="screenSize|orientation"
+            >
         </activity>
         <activity
             android:name=".activities.MedicinesActivity"
-            android:label="@string/title_activity_lista_medic" >
+            android:label="@string/title_activity_lista_medic"
+            android:configChanges="screenSize|orientation"
+            >
         </activity>
 
         <activity
             android:name=".activities.ContactsReg"
-            android:label="@string/title_activity_cadastro_usuario" >
+            android:label="@string/title_activity_cadastro_usuario"
+            android:configChanges="screenSize|orientation"
+            >
         </activity>
         <activity
             android:name=".activities.MedicinesReg"
-            android:label="@string/title_activity_lista_medic" >
+            android:label="@string/title_activity_lista_medic"
+            android:configChanges="screenSize|orientation"
+            >
         </activity>
         <activity
             android:name=".activities.ListContactsActivity"
-            android:label="@string/title_activity_lista_medic" >
+            android:label="@string/title_activity_lista_medic"
+            android:configChanges="screenSize|orientation"
+            >
         </activity>
         <activity
             android:name=".activities.MasterFooter"
-            android:label="@string/title_activity_lista_medic" >
+            android:label="@string/title_activity_lista_medic"
+
+            >
         </activity>
         <activity
             android:name=".activities.master_top"
-            android:label="@string/title_activity_lista_medic" >
+            android:label="@string/title_activity_lista_medic"
+
+            >
         </activity>
 
 

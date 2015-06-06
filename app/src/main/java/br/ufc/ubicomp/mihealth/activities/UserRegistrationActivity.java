@@ -2,7 +2,9 @@ package br.ufc.ubicomp.mihealth.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,17 +21,29 @@ public class UserRegistrationActivity extends Activity {
     ImageButton cad_us;
     ImageButton ajust;
     Button ok;
-
+    ImageButton main;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_usuario);
+        Log.d("US", "OrientationChange.onCreate");
+        // detect the current orientation
+        int currentOrientation = getResources().getConfiguration().orientation;
 
         dados_us = (ImageButton) findViewById(R.id.dados_usuario);
         cad_med = (ImageButton) findViewById(R.id.cad_med);
         cad_us = (ImageButton) findViewById(R.id.cad_cont);
         ajust = (ImageButton) findViewById(R.id.ajustes);
         ok = (Button) findViewById(R.id.butOk);
+        main = (ImageButton) findViewById(R.id.main);
+
+        main.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent(UserRegistrationActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ok.setOnClickListener(new View.OnClickListener()  {
 
@@ -80,7 +94,29 @@ public class UserRegistrationActivity extends Activity {
     }
 
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.d("US", "UserRegistrationActivity.onConfigurationChanged");
 
+
+        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Log.i("US",
+                    "UserRegistrationActivity.onConfigurationChanged (ORIENTATION_PORTRAIT)");
+            // setting orientation portrait
+
+            Intent intent = new Intent(UserRegistrationActivity.this, UserRegistrationActivity.class);
+            startActivity(intent);
+
+        } else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Log.i("US",
+                    "UserRegistrationActivity.onConfigurationChanged (ORIENTATION_LANDSCAPE)");
+
+            Intent intent = new Intent(UserRegistrationActivity.this, UserRegistrationActivity.class);
+            startActivity(intent);
+
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

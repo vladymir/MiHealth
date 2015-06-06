@@ -2,7 +2,9 @@ package br.ufc.ubicomp.mihealth.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -16,6 +18,7 @@ public class ContactsReg extends Activity {
     ImageButton cad_med;
     ImageButton cad_us;
     ImageButton ajust;
+    ImageButton main;
 
 
 
@@ -24,10 +27,23 @@ public class ContactsReg extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_contato);
 
+        Log.d("US", "OrientationChange.onCreate");
+        // detect the current orientation
+        int currentOrientation = getResources().getConfiguration().orientation;
+
         dados_us = (ImageButton) findViewById(R.id.dados_usuario);
         cad_med = (ImageButton) findViewById(R.id.cad_med);
         cad_us = (ImageButton) findViewById(R.id.cad_cont);
         ajust = (ImageButton) findViewById(R.id.ajustes);
+        main = (ImageButton) findViewById(R.id.main);
+
+        main.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                Intent intent = new Intent(ContactsReg.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         dados_us.setOnClickListener(new View.OnClickListener() {
 
@@ -63,7 +79,57 @@ public class ContactsReg extends Activity {
         });
 
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("US", "OrientationChange.onStart");
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("US", "OrientationChange.onResume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("US", "OrientationChange.onStop");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("US", "OrientationChange.onPause");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("US", "OrientationChange.onDestroy");
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.d("US",
+                "ContactsReg.onConfigurationChanged");
+
+
+        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Log.i("US",
+                    "ContactsReg.onConfigurationChanged (ORIENTATION_PORTRAIT)");
+            // setting orientation portrait
+            Intent intent = new Intent(ContactsReg.this, ContactsReg.class);
+            startActivity(intent);
+
+        } else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Log.i("US",
+                    "ContactsReg.onConfigurationChanged (ORIENTATION_LANDSCAPE)");
+            Intent intent = new Intent(ContactsReg.this, ContactsReg.class);
+            startActivity(intent);
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

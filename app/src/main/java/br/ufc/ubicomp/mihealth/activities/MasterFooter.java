@@ -2,7 +2,9 @@ package br.ufc.ubicomp.mihealth.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +22,9 @@ public class MasterFooter extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_master_footer);
+        Log.d("US", "OrientationChange.onCreate");
+        // detect the current orientation
+        int currentOrientation = getResources().getConfiguration().orientation;
 
         dados_us = (ImageButton) findViewById(R.id.dados_usuario);
         cad_med = (ImageButton) findViewById(R.id.cad_med);
@@ -63,7 +68,53 @@ public class MasterFooter extends Activity {
 
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.d("US", "MasterFooter.onConfigurationChanged");
 
+
+        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Log.i("US",
+                    "MasterFooter.onConfigurationChanged (ORIENTATION_PORTRAIT)");
+            // setting orientation portrait
+
+
+        } else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Log.i("US",
+                    "MasterFooter.onConfigurationChanged (ORIENTATION_LANDSCAPE)");
+
+        }
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("US", "OrientationChange.onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("US", "OrientationChange.onResume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("US", "OrientationChange.onStop");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("US", "OrientationChange.onPause");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("US", "OrientationChange.onDestroy");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

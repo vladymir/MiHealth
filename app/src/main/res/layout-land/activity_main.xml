@@ -1,36 +1,36 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:weightSum="6"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity"
-    android:baselineAligned="false">
-
+    tools:context="br.ufc.ubicomp.mihealth.activities.MainActivity"
+    android:orientation="horizontal"
+    android:weightSum="10">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="6">
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="10">
 
         <TextView
-            style="@style/Theme.MyTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
-            android:id="@+id/textView3"
+            android:id="@+id/textView"
             android:layout_gravity="center_horizontal"
             android:textSize="@dimen/abc_text_size_display_3_material"
             android:layout_weight="2"
+            style="@style/Theme.MyTheme"
             android:textStyle="bold" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:weightSum="2"
-            android:layout_weight="3">
+            android:layout_weight="4"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -111,9 +111,10 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:weightSum="2"
-            android:layout_weight="3">
+            android:layout_weight="4"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -193,17 +194,14 @@
                     style="@style/Theme.MyTheme" />
 
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
 
+
     <LinearLayout
-        style="@android:style/ButtonBar"
-        tools:context="br.ufc.ubicomp.mihealth.activities.MasterFooter"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/b_tb10L"
+        android:id="@+id/b_tb10"
         android:orientation="vertical"
         android:layout_height="fill_parent"
         android:layout_width="wrap_content"
@@ -211,27 +209,31 @@
         android:background="@color/colorPrimary"
         android:alpha="1"
         android:focusable="false"
-        android:weightSum="5" >
+        style="@android:style/ButtonBar"
+        android:weightSum="5"
+       >
+
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButton"
+            android:id="@+id/dados_usuario"
             android:onClick="onClick"
             android:src="@mipmap/ic_action_person"
             android:contentDescription="@string/usuario"
             android:layout_weight="1"
-            android:background="@android:color/transparent" />
+            android:background="@drawable/selector_button"
+            />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButton2"
+            android:id="@+id/cad_med"
             android:src="@mipmap/ic_action_new"
             android:onClick="onClick"
             android:contentDescription="@string/Medicamentos"
             android:layout_weight="1"
-            android:background="@android:color/transparent" />
+            android:background="@drawable/selector_button" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -240,28 +242,31 @@
             android:onClick="onClick"
             android:contentDescription="@string/app_name"
             android:layout_weight="1"
-            android:background="@android:color/transparent" />
+            android:background="@drawable/selector_button" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButton3"
+            android:id="@+id/cad_cont"
             android:src="@mipmap/ic_action_add_person"
             android:onClick="onClick"
             android:contentDescription="@string/Contatos"
             android:layout_weight="1"
-            android:background="@android:color/transparent" />
-
+            android:background="@drawable/selector_button" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButton4"
+            android:id="@+id/ajustes"
             android:src="@mipmap/ic_action_settings"
             android:onClick="onClick"
             android:contentDescription="@string/ajustes"
             android:layout_weight="1"
-            android:background="@android:color/transparent" />
+            android:background="@drawable/selector_button" />
+
+
+
     </LinearLayout>
 
-
 </LinearLayout>
+
+

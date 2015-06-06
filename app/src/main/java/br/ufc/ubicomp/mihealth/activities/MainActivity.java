@@ -3,6 +3,7 @@ package br.ufc.ubicomp.mihealth.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -34,6 +35,7 @@ public class MainActivity extends Activity {
     ImageButton cad_us;
     ImageButton ajust;
     ImageButton main;
+
     // TODO remover essa dependencia
     private GoogleApiClient mClient = null;
 
@@ -45,6 +47,7 @@ public class MainActivity extends Activity {
     protected void onStart() {
         super.onStart();
 
+        Log.i("US", "OrientationChange.onStart");
         // Connect to the Fitness API
         Toast.makeText(this,"Connecting...",Toast.LENGTH_SHORT).show();
         mClient.connect();
@@ -73,7 +76,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
-
+        Log.i("US", "OrientationChange.onStop");
         if (mClient.isConnected()) {
             Toast.makeText(this,"Disconnecting...",Toast.LENGTH_SHORT).show();
             mClient.disconnect();
@@ -99,7 +102,8 @@ public class MainActivity extends Activity {
         Intent heartMonitorService = new Intent(this, MiHeartMonitorService.class);
         this.startService(heartMonitorService);
 
-
+        Log.d("US", "OrientationChange.onCreate");
+        int currentOrientation = getResources().getConfiguration().orientation;
         dados_us = (ImageButton) findViewById(R.id.dados_usuario);
         cad_med = (ImageButton) findViewById(R.id.cad_med);
         cad_us = (ImageButton) findViewById(R.id.cad_cont);
@@ -149,6 +153,28 @@ public class MainActivity extends Activity {
 
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+
+        super.onConfigurationChanged(newConfig);
+        Log.d("US", "MainActivity.onConfigurationChanged");
+
+
+        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+
+            Log.i("US",
+                    "MainActivity.onConfigurationChanged (ORIENTATION_PORTRAIT)");
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(intent);
+
+        } else if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Log.i("US",
+                    "MainActivity.onConfigurationChanged (ORIENTATION_LANDSCAPE)");
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -157,6 +183,13 @@ public class MainActivity extends Activity {
         return true;
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("US", "OrientationChange.onResume");
+
+    }
     /**
      * Método chamado pelo EventBus
      * @param event
@@ -174,10 +207,17 @@ public class MainActivity extends Activity {
         Toast.makeText(this, "RequestSensorClient event", Toast.LENGTH_SHORT).show();
         MainEventBus.notify(new ResponseSensorClientEvent(mClient));
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("US", "OrientationChange.onPause");
+    }
+
 
     @Override
     protected void onDestroy() {
         // Sinaliza os componentes que a aplicação se encerrou
+        Log.i("US", "OrientationChange.onDestroy");
         MainEventBus.notify(new FinalizeEvent());
     }
 
