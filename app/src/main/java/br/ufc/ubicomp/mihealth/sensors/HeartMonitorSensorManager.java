@@ -9,51 +9,29 @@ import br.ufc.ubicomp.mihealth.events.ErrorEvent;
 import br.ufc.ubicomp.mihealth.events.FinalizeEvent;
 import br.ufc.ubicomp.mihealth.events.HeartMonitorEvent;
 
-/**
- * Created by nelson on 25/04/15.
- */
-public class HeartMonitorSensorManager extends MiSensorManager {
+public class HeartMonitorSensorManager extends MiSensorManager implements Runnable, Collectable<Double> {
 
-    private HeartMonitorAgent heartMonitorAgent;
-    private boolean isActive;
 
     public HeartMonitorSensorManager() {
-        heartMonitorAgent = new HeartMonitorAgent();
-
         // Assina no EventBus para receber a notificação de finalização de execução
         MainEventBus.register(this);
-
-        this.isActive = true;
-        while(this.isActive) {
-            heartMonitorAgent.execute();
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                ErrorHandlerEventBus.signal( new ErrorEvent(e) );
-            }
-        }
     }
 
-    public void onEvent(FinalizeEvent finalizeEvent) {
-        // Para a execução do sensor
-        this.isActive = false;
+    @Override
+    public void run() {
+        MainEventBus.notify(new HeartMonitorEvent(collect()));
     }
 
     public void dispatchEvent(double newHeartFrequency) {
-        MainEventBus.notifyStick( new HeartMonitorEvent(newHeartFrequency));
+        MainEventBus.notifySticky(new HeartMonitorEvent(newHeartFrequency));
     }
 
-    private class HeartMonitorAgent extends AsyncTask<Void, Void, Double> {
-        @Override
-        protected Double doInBackground(Void... values) {
-            // TODO Pegar valor na cinta de monitoramento
-            return new Double( Math.random() * 80 );
-        }
-
-        @Override
-        protected void onPostExecute(Double aDouble) {
-            dispatchEvent(aDouble);
-        }
+    /**
+     * Faça a leitura do sensor aqui!
+     * @return Dado obtido do sensor
+     */
+    @Override
+    public Double collect() {
+        return new Double(Math.random() * 80);
     }
-
 }

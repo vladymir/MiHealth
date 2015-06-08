@@ -6,17 +6,24 @@ import android.os.IBinder;
 import android.util.Log;
 
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
+import br.ufc.ubicomp.mihealth.context.CollectContextData;
 import br.ufc.ubicomp.mihealth.events.LocationEvent;
+import br.ufc.ubicomp.mihealth.sensors.BodyTemperatureSensorManager;
+import br.ufc.ubicomp.mihealth.sensors.HeartMonitorSensorManager;
 
 public class MiService extends Service {
 
+    private CollectContextData contextReader;
+
     public MiService() {
+        contextReader = new CollectContextData(this);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
         MainEventBus.register(this);
+        new Thread(contextReader).start();
     }
 
     @SuppressWarnings("Method called by EventBus objects")

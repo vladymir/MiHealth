@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -20,6 +21,7 @@ import com.google.android.gms.fitness.Fitness;
 
 import br.ufc.ubicomp.mihealth.R;
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
+import br.ufc.ubicomp.mihealth.events.BodyTemperatureEvent;
 import br.ufc.ubicomp.mihealth.events.FinalizeEvent;
 import br.ufc.ubicomp.mihealth.events.GenericEvent;
 import br.ufc.ubicomp.mihealth.events.HeartMonitorEvent;
@@ -237,6 +239,21 @@ public class MainActivity extends Activity {
         MainEventBus.notify(new GenericEvent());
     }
 
+
+    public void onEventMainThread(HeartMonitorEvent heartMonitorEvent) {
+        TextView view = (TextView)findViewById(R.id.heartFreq);
+        view.clearComposingText();
+        view.setText(String.valueOf(heartMonitorEvent.heartFrequency.intValue()));
+    }
+
+    public void onEventMainThread(BodyTemperatureEvent bodyTemperatureEvent) {
+        TextView view = (TextView)findViewById(R.id.editText5);
+        TextView body = (TextView)findViewById(R.id.editText4);
+        view.clearComposingText();
+        body.clearComposingText();
+        view.setText(String.valueOf(bodyTemperatureEvent.bodyTemperature.intValue()));
+        body.setText(String.valueOf(bodyTemperatureEvent.bodyTemperature.intValue()));
+    }
     /**
      *  Build a {@link GoogleApiClient} that will authenticate the user and allow the application
      *  to connect to Fitness APIs. The scopes included should match the scopes your app needs

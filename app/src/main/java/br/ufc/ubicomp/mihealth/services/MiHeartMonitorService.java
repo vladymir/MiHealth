@@ -40,7 +40,7 @@ public class MiHeartMonitorService extends FitnessSensorService implements OnDat
     @Override
     public void onCreate() {
         super.onCreate();
-        MainEventBus.notifyStick(new RequestSensorClientEvent());
+        MainEventBus.notifySticky(new RequestSensorClientEvent());
     }
 
     @Override
