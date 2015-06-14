@@ -3,23 +3,20 @@ package br.ufc.ubicomp.mihealth.sensors;
 
 import android.os.AsyncTask;
 
+import java.util.HashMap;
+
 import br.ufc.ubicomp.mihealth.bus.ErrorHandlerEventBus;
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
+import br.ufc.ubicomp.mihealth.enums.Sensor;
 import br.ufc.ubicomp.mihealth.events.ErrorEvent;
 import br.ufc.ubicomp.mihealth.events.FinalizeEvent;
 import br.ufc.ubicomp.mihealth.events.HeartMonitorEvent;
+import br.ufc.ubicomp.mihealth.utils.Tuple;
 
-public class HeartMonitorSensorManager extends MiSensorManager implements Runnable, Collectable<Double> {
+public class HeartMonitorSensorManager extends MiSensorManager implements HashCollectable {
 
 
     public HeartMonitorSensorManager() {
-        // Assina no EventBus para receber a notificação de finalização de execução
-        MainEventBus.register(this);
-    }
-
-    @Override
-    public void run() {
-        MainEventBus.notify(new HeartMonitorEvent(collect()));
     }
 
     public void dispatchEvent(double newHeartFrequency) {
@@ -31,7 +28,15 @@ public class HeartMonitorSensorManager extends MiSensorManager implements Runnab
      * @return Dado obtido do sensor
      */
     @Override
-    public Double collect() {
-        return new Double(Math.random() * 80);
+    public Tuple<Sensor, Double> collect() {
+        Tuple<Sensor,Double> result = new Tuple<>(Sensor.HEARTBEAT, new Double(Math.random() * 80));
+        return result;
+    }
+
+    @Override
+    public Tuple<Sensor, Double> call() throws Exception {
+        Tuple<Sensor,Double> result = this.collect();
+        MainEventBus.notify(new HeartMonitorEvent(result.second));
+        return result;
     }
 }

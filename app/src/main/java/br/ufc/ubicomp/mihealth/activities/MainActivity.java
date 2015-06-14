@@ -28,6 +28,7 @@ import br.ufc.ubicomp.mihealth.events.HeartMonitorEvent;
 import br.ufc.ubicomp.mihealth.events.LocationEvent;
 import br.ufc.ubicomp.mihealth.events.RequestSensorClientEvent;
 import br.ufc.ubicomp.mihealth.events.ResponseSensorClientEvent;
+import br.ufc.ubicomp.mihealth.events.WeatherEvent;
 import br.ufc.ubicomp.mihealth.services.MiHeartMonitorService;
 import br.ufc.ubicomp.mihealth.services.MiService;
 
@@ -209,14 +210,6 @@ public class MainActivity extends Activity {
         MainEventBus.notify(new ResponseSensorClientEvent(mClient));
     }
 
-    /**
-     *
-     * @param event
-     */
-    public void onEvent(HeartMonitorEvent event) {
-        Toast.makeText(this, "Frenquencia Cardiaca: " + event.heartFrequencyStr, Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -241,17 +234,20 @@ public class MainActivity extends Activity {
 
 
     public void onEventMainThread(HeartMonitorEvent heartMonitorEvent) {
-        TextView view = (TextView)findViewById(R.id.heartFreq);
+        TextView view = (TextView)findViewById(R.id.heartBeatB);
         view.clearComposingText();
         view.setText(String.valueOf(heartMonitorEvent.heartFrequency.intValue()));
     }
 
-    public void onEventMainThread(BodyTemperatureEvent bodyTemperatureEvent) {
-        TextView view = (TextView)findViewById(R.id.editText5);
-        TextView body = (TextView)findViewById(R.id.editText4);
+    public void onEventMainThread(WeatherEvent weatherEvent) {
+        TextView view = (TextView)findViewById(R.id.tempB);
         view.clearComposingText();
+        view.setText(String.valueOf(weatherEvent.temperature.intValue()));
+    }
+
+    public void onEventMainThread(BodyTemperatureEvent bodyTemperatureEvent) {
+        TextView body = (TextView)findViewById(R.id.tempCorpB);
         body.clearComposingText();
-        view.setText(String.valueOf(bodyTemperatureEvent.bodyTemperature.intValue()));
         body.setText(String.valueOf(bodyTemperatureEvent.bodyTemperature.intValue()));
     }
     /**

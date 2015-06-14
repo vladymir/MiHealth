@@ -7,28 +7,23 @@ import android.util.Log;
 
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
 import br.ufc.ubicomp.mihealth.context.CollectContextData;
+import br.ufc.ubicomp.mihealth.context.ContextManager;
 import br.ufc.ubicomp.mihealth.events.LocationEvent;
 import br.ufc.ubicomp.mihealth.sensors.BodyTemperatureSensorManager;
 import br.ufc.ubicomp.mihealth.sensors.HeartMonitorSensorManager;
+import br.ufc.ubicomp.mihealth.sensors.WeatherSensorManager;
 
 public class MiService extends Service {
 
-    private CollectContextData contextReader;
+    private ContextManager contextManager;
 
     public MiService() {
-        contextReader = new CollectContextData(this);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        MainEventBus.register(this);
-        new Thread(contextReader).start();
-    }
-
-    @SuppressWarnings("Method called by EventBus objects")
-    public void onEvent(LocationEvent event) {
-        Log.d("LOCATION_EVENT","Location: "+ event.location.lat);
+        contextManager = ContextManager.getInstance(this);
     }
 
     @Override
@@ -42,5 +37,4 @@ public class MiService extends Service {
         Log.d("VLAD", "MY SERVICE STARTED");
         return super.onStartCommand(intent, flags, startId);
     }
-
 }

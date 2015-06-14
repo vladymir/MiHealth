@@ -1,8 +1,14 @@
 package br.ufc.ubicomp.mihealth.events;
 
-public class WeatherEvent extends MiEvent {
+import br.ufc.ubicomp.mihealth.bus.MainEventBus;
+import br.ufc.ubicomp.mihealth.sensors.Collectable;
 
-    public WeatherEvent() {
+public class WeatherEvent extends MiEvent {
+    public final Double temperature;
+
+    public WeatherEvent(Double temp) {
         super("Weather event");
+        this.temperature = temp;
     }
+
 }

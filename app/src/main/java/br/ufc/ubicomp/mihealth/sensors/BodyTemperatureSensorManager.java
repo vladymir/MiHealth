@@ -1,22 +1,21 @@
 package br.ufc.ubicomp.mihealth.sensors;
 
+import java.util.HashMap;
+
 import br.ufc.ubicomp.mihealth.bus.ErrorHandlerEventBus;
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
+import br.ufc.ubicomp.mihealth.enums.Sensor;
 import br.ufc.ubicomp.mihealth.events.BodyTemperatureEvent;
 import br.ufc.ubicomp.mihealth.events.ErrorEvent;
 import br.ufc.ubicomp.mihealth.events.FinalizeEvent;
+import br.ufc.ubicomp.mihealth.utils.Tuple;
 
 /**
  * TODO: Add a class header comment!
  */
-public class BodyTemperatureSensorManager extends MiSensorManager implements Runnable,Collectable<Double> {
+public class BodyTemperatureSensorManager extends MiSensorManager implements HashCollectable {
 
     public BodyTemperatureSensorManager() {
-        MainEventBus.register(this);
-    }
-
-    public void run() {
-        MainEventBus.notify(new BodyTemperatureEvent(collect()));
     }
 
     /**
@@ -24,7 +23,15 @@ public class BodyTemperatureSensorManager extends MiSensorManager implements Run
      * @return Dado do sensor obtido.
      */
     @Override
-    public Double collect() {
-        return new Double( Math.random() * 40 );
+    public Tuple<Sensor, Double> collect() {
+        Tuple<Sensor,Double> result = new Tuple<>(Sensor.BODYTEMPERATURE, new Double( Math.random() * 40 ));
+        return result;
+    }
+
+    @Override
+    public Tuple<Sensor, Double> call() throws Exception {
+        Tuple<Sensor,Double> result = this.collect();
+        MainEventBus.notify(new BodyTemperatureEvent(result.second));
+        return result;
     }
 }

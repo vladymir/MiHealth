@@ -1,5 +1,8 @@
 package br.ufc.ubicomp.mihealth.sensors;
 
-public interface Collectable<A> extends Runnable {
-    public A collect();
+import java.util.concurrent.Callable;
+
+public interface Collectable<A> extends Callable<A> {
+
+    A collect();
 }
