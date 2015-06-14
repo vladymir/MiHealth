@@ -97,10 +97,6 @@
             >
         </activity>
 
-
-
-
-
         <service
             android:name=".services.MiHeartMonitorService"
             android:exported="true">

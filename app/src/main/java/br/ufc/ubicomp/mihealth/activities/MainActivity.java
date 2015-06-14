@@ -22,6 +22,7 @@ import br.ufc.ubicomp.mihealth.R;
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
 import br.ufc.ubicomp.mihealth.events.FinalizeEvent;
 import br.ufc.ubicomp.mihealth.events.GenericEvent;
+import br.ufc.ubicomp.mihealth.events.HeartMonitorEvent;
 import br.ufc.ubicomp.mihealth.events.LocationEvent;
 import br.ufc.ubicomp.mihealth.events.RequestSensorClientEvent;
 import br.ufc.ubicomp.mihealth.events.ResponseSensorClientEvent;
@@ -205,6 +206,15 @@ public class MainActivity extends Activity {
         Toast.makeText(this, "RequestSensorClient event", Toast.LENGTH_SHORT).show();
         MainEventBus.notify(new ResponseSensorClientEvent(mClient));
     }
+
+    /**
+     *
+     * @param event
+     */
+    public void onEvent(HeartMonitorEvent event) {
+        Toast.makeText(this, "Frenquencia Cardiaca: " + event.heartFrequencyStr, Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -240,6 +250,7 @@ public class MainActivity extends Activity {
         GoogleApiClient.Builder builder = new GoogleApiClient.Builder(this);
 
         builder.addApi(Fitness.SENSORS_API);
+        builder.addApi(Fitness.BLE_API);
 
         builder.addScope(new Scope(Scopes.FITNESS_BODY_READ));
 
@@ -247,7 +258,7 @@ public class MainActivity extends Activity {
                 new GoogleApiClient.ConnectionCallbacks() {
                     @Override
                     public void onConnected(Bundle bundle) {
-                        Toast.makeText(MainActivity.this, "Conectado ao google fit...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Conectado!", Toast.LENGTH_SHORT).show();
 
                         Intent heartMonitorService = new Intent(MainActivity.this, MiHeartMonitorService.class);
                         MainActivity.this.startService(heartMonitorService);
@@ -271,22 +282,19 @@ public class MainActivity extends Activity {
                     // Called whenever the API client fails to connect.
                     @Override
                     public void onConnectionFailed(ConnectionResult result) {
-                        Toast.makeText(MainActivity.this, "Connection failed. Cause: " + result.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Erro de conexao." + result.toString(), Toast.LENGTH_SHORT).show();
                         if (!result.hasResolution()) {
                             // Show the localized error dialog
                             GooglePlayServicesUtil.getErrorDialog(result.getErrorCode(), MainActivity.this, 0).show();
                             return;
                         }
-                        // The failure has a resolution. Resolve it.
-                        // Called typically when the app is not yet authorized, and an
-                        // authorization dialog is displayed to the user.
                         if (!authInProgress) {
                             try {
-                                Toast.makeText(MainActivity.this, "Attempting to resolve failed connection", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Nao foi possivel estabelecer uma conexao.", Toast.LENGTH_SHORT).show();
                                 authInProgress = true;
                                 result.startResolutionForResult(MainActivity.this, REQUEST_OAUTH);
                             } catch (IntentSender.SendIntentException e) {
-                                Toast.makeText(MainActivity.this, "Exception while starting resolution activity", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Excecao durante a tentativa de conexao.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
