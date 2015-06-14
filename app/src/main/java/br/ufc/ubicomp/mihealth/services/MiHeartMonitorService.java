@@ -55,20 +55,20 @@ public class MiHeartMonitorService extends FitnessSensorService {
     }
 
     public void onEvent(ResponseSensorClientEvent response) {
-        Toast.makeText(this,"Response message", Toast.LENGTH_SHORT).show();
-
         this.sensorClient = response.client;
         if (this.sensorClient == null) {
-            // TODO Refatorar - nada tem a fazer por enquanto
+            Toast.makeText(this,"Erro na conexao ao GoogleFit...", Toast.LENGTH_SHORT).show();
             return;
         }
 
         // 1. Initialize your software sensor(s).
         // 1. Define a callback object
+        Toast.makeText(this,"Cliente googlefit valido. Tentando conectar no device....", Toast.LENGTH_SHORT).show();
         BleScanCallback callback = new BleScanCallback() {
             @Override
             public void onDeviceFound(BleDevice device) {
                 heartMonitorDevice = device;
+                Toast.makeText(MiHeartMonitorService.this,"Dispositivo Bth encontrado: " + heartMonitorDevice.getName(), Toast.LENGTH_SHORT).show();
                 PendingResult<Status> pendingResult = Fitness.BleApi.claimBleDevice(sensorClient, heartMonitorDevice);
             }
             @Override
@@ -89,8 +89,10 @@ public class MiHeartMonitorService extends FitnessSensorService {
     @Override
     public List<DataSource> onFindDataSources(List<DataType> dataTypes) {
         ArrayList<DataSource> dataSources = new ArrayList<DataSource>();
+        Toast.makeText(MiHeartMonitorService.this,"Encontrado data sources....", Toast.LENGTH_SHORT).show();
         for (DataType type : dataTypes) {
             if (type.equals(DataType.TYPE_HEART_RATE_BPM)) {
+                Toast.makeText(MiHeartMonitorService.this,"Tipo para frequencia cardiaca encontrado....", Toast.LENGTH_SHORT).show();
                 dataSources.add(new DataSource.Builder().setDataType(type).setType(DataSource.TYPE_RAW).build());
             }
         }
