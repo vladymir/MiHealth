@@ -26,7 +26,7 @@ public class BodyTemperatureSensorManager extends MiSensorManager implements Has
     @Override
     public Tuple<Sensor, Double> collect() {
         Tuple<Sensor,Double> result = new Tuple<>(Sensor.BODYTEMPERATURE,
-                new Double( new Random().nextInt((45 - 30) + 1) + 30 ));
+                new Double( new Random().nextGaussian() + 36.5 ));
         return result;
     }
 

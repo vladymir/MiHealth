@@ -4,21 +4,16 @@ import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
 import br.ufc.ubicomp.mihealth.enums.Sensor;
-import br.ufc.ubicomp.mihealth.events.HeartMonitorEvent;
-import br.ufc.ubicomp.mihealth.events.WeatherEvent;
 import br.ufc.ubicomp.mihealth.sensors.BodyTemperatureSensorManager;
-import br.ufc.ubicomp.mihealth.sensors.Collectable;
 import br.ufc.ubicomp.mihealth.sensors.HashCollectable;
 import br.ufc.ubicomp.mihealth.sensors.HeartMonitorSensorManager;
 import br.ufc.ubicomp.mihealth.sensors.WeatherSensorManager;
-import br.ufc.ubicomp.mihealth.utils.SmsUtil;
 import br.ufc.ubicomp.mihealth.utils.Tuple;
 
 public class ContextManager {
@@ -51,6 +46,7 @@ public class ContextManager {
         Log.d("Futures", aggregate.toString());
         List<Tuple<Sensor,Double>> contextData = getMapsFromAggregate(aggregate);
         makeInference(contextData);
+        MainEventBus.notify(new UpdateUIEvent(contextData));
     }
 
     private List<Tuple<Sensor,Double>> getMapsFromAggregate(AggregateContext aggregateContext) {

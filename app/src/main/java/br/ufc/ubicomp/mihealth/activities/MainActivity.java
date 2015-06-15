@@ -19,8 +19,13 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.fitness.Fitness;
 
+import java.util.List;
+
 import br.ufc.ubicomp.mihealth.R;
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
+import br.ufc.ubicomp.mihealth.context.AggregateContext;
+import br.ufc.ubicomp.mihealth.context.UpdateUIEvent;
+import br.ufc.ubicomp.mihealth.enums.Sensor;
 import br.ufc.ubicomp.mihealth.events.BodyTemperatureEvent;
 import br.ufc.ubicomp.mihealth.events.FinalizeEvent;
 import br.ufc.ubicomp.mihealth.events.GenericEvent;
@@ -31,6 +36,7 @@ import br.ufc.ubicomp.mihealth.events.ResponseSensorClientEvent;
 import br.ufc.ubicomp.mihealth.events.WeatherEvent;
 import br.ufc.ubicomp.mihealth.services.MiHeartMonitorService;
 import br.ufc.ubicomp.mihealth.services.MiService;
+import br.ufc.ubicomp.mihealth.utils.Tuple;
 
 
 public class MainActivity extends Activity {
@@ -232,23 +238,25 @@ public class MainActivity extends Activity {
         MainEventBus.notify(new GenericEvent());
     }
 
-
-    public void onEventMainThread(HeartMonitorEvent heartMonitorEvent) {
-        TextView view = (TextView)findViewById(R.id.heartBeatB);
-        view.clearComposingText();
-        view.setText(String.valueOf(heartMonitorEvent.heartFrequency.intValue()));
-    }
-
-    public void onEventMainThread(WeatherEvent weatherEvent) {
-        TextView view = (TextView)findViewById(R.id.tempB);
-        view.clearComposingText();
-        view.setText(String.valueOf(weatherEvent.temperature.intValue()));
-    }
-
-    public void onEventMainThread(BodyTemperatureEvent bodyTemperatureEvent) {
+    public void onEventMainThread(UpdateUIEvent context) {
         TextView body = (TextView)findViewById(R.id.tempCorpB);
-        body.clearComposingText();
-        body.setText(String.valueOf(bodyTemperatureEvent.bodyTemperature.intValue()));
+        TextView weather = (TextView)findViewById(R.id.tempB);
+        TextView heartBeat = (TextView)findViewById(R.id.heartBeatB);
+        for(Tuple<Sensor,Double> contextData : context.contextData) {
+            switch (contextData.first) {
+                case BODYTEMPERATURE:
+                    body.setText(String.valueOf(contextData.second.intValue()));
+                    break;
+                case WEATHERTEMPERATURE:
+                    weather.setText(String.valueOf(contextData.second.intValue()));
+                    break;
+                case HEARTBEAT:
+                    heartBeat.setText(String.valueOf(contextData.second.intValue()));
+                    break;
+                default:
+                    break;
+            }
+        }
     }
     /**
      *  Build a {@link GoogleApiClient} that will authenticate the user and allow the application

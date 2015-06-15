@@ -31,7 +31,7 @@ public class HeartMonitorSensorManager extends MiSensorManager implements HashCo
     @Override
     public Tuple<Sensor, Double> collect() {
         Tuple<Sensor,Double> result = new Tuple<>(Sensor.HEARTBEAT,
-                new Double(new Random().nextInt((150 - 60) + 1) + 60 ));
+                new Double(new Random().nextGaussian() + 75 ));
         return result;
     }
 
