@@ -28,7 +28,7 @@ public class MainEventBus {
     }
 
     // TODO Refatorar
-    public static void notifyStick(MiEvent event) {
+    public static void notifySticky(MiEvent event) {
         bus.postSticky(event);
     }
 }

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -24,11 +25,14 @@ import br.ufc.ubicomp.mihealth.R;
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
 import br.ufc.ubicomp.mihealth.dao.DatabaseHelper;
 import br.ufc.ubicomp.mihealth.dao.MedicinesDAO;
+import br.ufc.ubicomp.mihealth.events.BodyTemperatureEvent;
 import br.ufc.ubicomp.mihealth.events.FinalizeEvent;
 import br.ufc.ubicomp.mihealth.events.GenericEvent;
+import br.ufc.ubicomp.mihealth.events.HeartMonitorEvent;
 import br.ufc.ubicomp.mihealth.events.LocationEvent;
 import br.ufc.ubicomp.mihealth.events.RequestSensorClientEvent;
 import br.ufc.ubicomp.mihealth.events.ResponseSensorClientEvent;
+import br.ufc.ubicomp.mihealth.events.WeatherEvent;
 import br.ufc.ubicomp.mihealth.services.MiHeartMonitorService;
 import br.ufc.ubicomp.mihealth.services.MiService;
 
@@ -52,6 +56,7 @@ public class MainActivity extends Activity {
         super.onStart();
 
         Log.i("US", "OrientationChange.onStart");
+
         // Connect to the Fitness API
         Toast.makeText(this,"Connecting...",Toast.LENGTH_SHORT).show();
         mClient.connect();
@@ -108,6 +113,7 @@ public class MainActivity extends Activity {
 
 
 
+        Log.d("US", "OrientationChange.onCreate");
         int currentOrientation = getResources().getConfiguration().orientation;
         dados_us = (ImageButton) findViewById(R.id.dados_usuario);
         cad_med = (ImageButton) findViewById(R.id.cad_med);
@@ -212,6 +218,7 @@ public class MainActivity extends Activity {
         Toast.makeText(this, "RequestSensorClient event", Toast.LENGTH_SHORT).show();
         MainEventBus.notify(new ResponseSensorClientEvent(mClient));
     }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -221,9 +228,12 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onDestroy() {
+
         // Sinaliza os componentes que a aplicação se encerrou
         Log.i("US", "OrientationChange.onDestroy");
         MainEventBus.notify(new FinalizeEvent());
+
+        super.onDestroy();
     }
 
     public void onClick(View view) {
@@ -231,6 +241,24 @@ public class MainActivity extends Activity {
         MainEventBus.notify(new GenericEvent());
     }
 
+
+    public void onEventMainThread(HeartMonitorEvent heartMonitorEvent) {
+        TextView view = (TextView)findViewById(R.id.heartBeatB);
+        view.clearComposingText();
+        view.setText(String.valueOf(heartMonitorEvent.heartFrequency.intValue()));
+    }
+
+    public void onEventMainThread(WeatherEvent weatherEvent) {
+        TextView view = (TextView)findViewById(R.id.tempB);
+        view.clearComposingText();
+        view.setText(String.valueOf(weatherEvent.temperature.intValue()));
+    }
+
+    public void onEventMainThread(BodyTemperatureEvent bodyTemperatureEvent) {
+        TextView body = (TextView)findViewById(R.id.tempCorpB);
+        body.clearComposingText();
+        body.setText(String.valueOf(bodyTemperatureEvent.bodyTemperature.intValue()));
+    }
     /**
      *  Build a {@link GoogleApiClient} that will authenticate the user and allow the application
      *  to connect to Fitness APIs. The scopes included should match the scopes your app needs
@@ -241,55 +269,60 @@ public class MainActivity extends Activity {
      */
     private void buildFitnessClient() {
         // Create the Google API Client
-        mClient = new GoogleApiClient.Builder(this)
-                .addApi(Fitness.SENSORS_API)
-                .addScope(new Scope(Scopes.FITNESS_LOCATION_READ))
-                .addConnectionCallbacks(
-                        new GoogleApiClient.ConnectionCallbacks() {
-                            @Override
-                            public void onConnected(Bundle bundle) {
-                                Toast.makeText(MainActivity.this, "Connected!!!", Toast.LENGTH_SHORT).show();
-                                // Now you can make calls to the Fitness APIs.
-                                // Put application specific code here.
-                            }
-                            @Override
-                            public void onConnectionSuspended(int i) {
-                                // If your connection to the sensor gets lost at some point,
-                                // you'll be able to determine the reason and react to it here.
-                                if (i == GoogleApiClient.ConnectionCallbacks.CAUSE_NETWORK_LOST) {
-                                    Toast.makeText(MainActivity.this, "Connection lost.  Cause: Network Lost.", Toast.LENGTH_SHORT).show();
-                                } else if (i == GoogleApiClient.ConnectionCallbacks.CAUSE_SERVICE_DISCONNECTED) {
-                                    Toast.makeText(MainActivity.this, "Connection lost.  Reason: Service Disconnected", Toast.LENGTH_SHORT).show();
-                                }
+        GoogleApiClient.Builder builder = new GoogleApiClient.Builder(this);
+
+        builder.addApi(Fitness.SENSORS_API);
+        builder.addApi(Fitness.BLE_API);
+
+        builder.addScope(new Scope(Scopes.FITNESS_BODY_READ));
+
+        builder.addConnectionCallbacks(
+                new GoogleApiClient.ConnectionCallbacks() {
+                    @Override
+                    public void onConnected(Bundle bundle) {
+                        Toast.makeText(MainActivity.this, "Conectado!", Toast.LENGTH_SHORT).show();
+
+                        Intent heartMonitorService = new Intent(MainActivity.this, MiHeartMonitorService.class);
+                        MainActivity.this.startService(heartMonitorService);
+                    }
+
+                    @Override
+                    public void onConnectionSuspended(int i) {
+                        // If your connection to the sensor gets lost at some point,
+                        // you'll be able to determine the reason and react to it here.
+                        if (i == GoogleApiClient.ConnectionCallbacks.CAUSE_NETWORK_LOST) {
+                            Toast.makeText(MainActivity.this, "Perda de conexao. Falha na rede.", Toast.LENGTH_SHORT).show();
+                        } else if (i == GoogleApiClient.ConnectionCallbacks.CAUSE_SERVICE_DISCONNECTED) {
+                            Toast.makeText(MainActivity.this, "Perda de conexao. Servico desconectado.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+        );
+
+        builder.addOnConnectionFailedListener(
+                new GoogleApiClient.OnConnectionFailedListener() {
+                    // Called whenever the API client fails to connect.
+                    @Override
+                    public void onConnectionFailed(ConnectionResult result) {
+                        Toast.makeText(MainActivity.this, "Erro de conexao." + result.toString(), Toast.LENGTH_SHORT).show();
+                        if (!result.hasResolution()) {
+                            // Show the localized error dialog
+                            GooglePlayServicesUtil.getErrorDialog(result.getErrorCode(), MainActivity.this, 0).show();
+                            return;
+                        }
+                        if (!authInProgress) {
+                            try {
+                                Toast.makeText(MainActivity.this, "Nao foi possivel estabelecer uma conexao.", Toast.LENGTH_SHORT).show();
+                                authInProgress = true;
+                                result.startResolutionForResult(MainActivity.this, REQUEST_OAUTH);
+                            } catch (IntentSender.SendIntentException e) {
+                                Toast.makeText(MainActivity.this, "Excecao durante a tentativa de conexao.", Toast.LENGTH_SHORT).show();
                             }
                         }
-                )
-                .addOnConnectionFailedListener(
-                        new GoogleApiClient.OnConnectionFailedListener() {
-                            // Called whenever the API client fails to connect.
-                            @Override
-                            public void onConnectionFailed(ConnectionResult result) {
-                                Toast.makeText(MainActivity.this, "Connection failed. Cause: " + result.toString(), Toast.LENGTH_SHORT).show();
-                                if (!result.hasResolution()) {
-                                    // Show the localized error dialog
-                                    GooglePlayServicesUtil.getErrorDialog(result.getErrorCode(), MainActivity.this, 0).show();
-                                    return;
-                                }
-                                // The failure has a resolution. Resolve it.
-                                // Called typically when the app is not yet authorized, and an
-                                // authorization dialog is displayed to the user.
-                                if (!authInProgress) {
-                                    try {
-                                        Toast.makeText(MainActivity.this, "Attempting to resolve failed connection", Toast.LENGTH_SHORT).show();
-                                        authInProgress = true;
-                                        result.startResolutionForResult(MainActivity.this, REQUEST_OAUTH);
-                                    } catch (IntentSender.SendIntentException e) {
-                                        Toast.makeText(MainActivity.this, "Exception while starting resolution activity", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }
-                        }
-                )
-                .build();
+                    }
+                }
+        );
+
+        mClient = builder.build();
     }
 }

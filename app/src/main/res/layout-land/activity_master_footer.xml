@@ -5,55 +5,21 @@
     android:layout_alignParentBottom="true"
     android:orientation="vertical"
     android:layout_height="fill_parent"
-    android:layout_width="wrap_content"
+    android:layout_width="fill_parent"
     android:minHeight="@dimen/abc_action_bar_default_height_material"
-    android:background="@color/colorPrimary"
     android:alpha="1"
     android:focusable="false"
     style="@android:style/ButtonBar"
     android:weightSum="4"
-    tools:context="br.ufc.ubicomp.mihealth.activities.MasterFooter">
-
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/dados_usuario"
-        android:onClick="onClick"
-        android:src="@mipmap/ic_action_person"
-        android:contentDescription="@string/usuario"
-        android:layout_weight="1"
-        android:background="@android:color/transparent"
-        />
+    tools:context="br.ufc.ubicomp.mihealth.activities.MasterFooter"
+    android:gravity="center_vertical|center_horizontal">
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/cad_med"
-        android:src="@mipmap/ic_action_new"
-        android:onClick="onClick"
-        android:contentDescription="@string/Medicamentos"
-        android:layout_weight="1"
-        android:background="@android:color/transparent" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cad_cont"
-        android:src="@mipmap/ic_action_add_person"
-        android:onClick="onClick"
-        android:contentDescription="@string/Contatos"
-        android:layout_weight="1"
-        android:background="@android:color/transparent" />
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ajustes"
-        android:src="@mipmap/ic_action_settings"
-        android:onClick="onClick"
-        android:contentDescription="@string/ajustes"
-        android:layout_weight="1"
-        android:background="@android:color/transparent" />
+        android:id="@+id/mainF"
+        android:layout_gravity="center"
+        android:background="@drawable/construcao" />
 
 
 

@@ -18,10 +18,10 @@ public class NetChangedReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if(NetManager.isOnline(context)) {
             Toast.makeText(context, "Is connected!!", Toast.LENGTH_SHORT).show();
-            MainEventBus.notifyStick(new NetStateEvent(NetworkState.ONLINE));
+            MainEventBus.notifySticky(new NetStateEvent(NetworkState.ONLINE));
         } else {
             Toast.makeText(context, "Is offline!!", Toast.LENGTH_SHORT).show();
-            MainEventBus.notifyStick(new NetStateEvent(NetworkState.OFFLINE));
+            MainEventBus.notifySticky(new NetStateEvent(NetworkState.OFFLINE));
         }
     }
 }
