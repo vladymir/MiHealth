@@ -72,22 +72,16 @@ public class CollectContextData implements Runnable {
     public void run() {
         synchronized (sensors) {
             while (isActive) {
-                List<Future<Tuple>> futures = new ArrayList<Future<Tuple>>();
+                List<Future<Tuple<Sensor,Double>>> futures = new ArrayList<>();
                 for (Collectable sensor : sensors) {
                     futures.add(pool.submit(sensor));
                 }
 
                 try {
                     MainEventBus.notify(new AggregateContext(futures));
-
-                    for(Future<Tuple> future : futures) {
-                        Log.d("Future", future.get().toString());
-                    }
                     Log.d("CONTEXTCOLLECTOR", "Running context reader");
                     Thread.sleep(timeBetweenCollectInSeconds * 1000);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
             }

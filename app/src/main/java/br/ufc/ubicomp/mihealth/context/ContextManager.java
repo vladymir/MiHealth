@@ -18,6 +18,7 @@ import br.ufc.ubicomp.mihealth.sensors.Collectable;
 import br.ufc.ubicomp.mihealth.sensors.HashCollectable;
 import br.ufc.ubicomp.mihealth.sensors.HeartMonitorSensorManager;
 import br.ufc.ubicomp.mihealth.sensors.WeatherSensorManager;
+import br.ufc.ubicomp.mihealth.utils.SmsUtil;
 import br.ufc.ubicomp.mihealth.utils.Tuple;
 
 public class ContextManager {
@@ -48,12 +49,13 @@ public class ContextManager {
 
     public void onEvent(AggregateContext aggregate) {
         Log.d("Futures", aggregate.toString());
-        List<Tuple> contextData = getMapsFromAggregate(aggregate);
+        List<Tuple<Sensor,Double>> contextData = getMapsFromAggregate(aggregate);
+        makeInference(contextData);
     }
 
-    private List<Tuple> getMapsFromAggregate(AggregateContext aggregateContext) {
-        List<Tuple> contextData = new ArrayList<>();
-        for(Future<Tuple> future : aggregateContext.futures) {
+    private List<Tuple<Sensor,Double>> getMapsFromAggregate(AggregateContext aggregateContext) {
+        List<Tuple<Sensor,Double>> contextData = new ArrayList<>();
+        for(Future<Tuple<Sensor,Double>> future : aggregateContext.futures) {
             try {
                 contextData.add(future.get());
             } catch (InterruptedException e) {
@@ -65,14 +67,27 @@ public class ContextManager {
         return contextData;
     }
 
+    private void sendAlert(String message) {
+        //SmsUtil.sendSMS("8597493596", message);
+    }
+
     private List<Tuple> makeInference(List<Tuple<Sensor,Double>> contextData) {
         for(Tuple<Sensor,Double> context : contextData) {
             switch (context.first) {
                 case BODYTEMPERATURE:
+                    if(context.second < 35)
+                        sendAlert("Temperatura corporal muito baixa!");
+                    else if(context.second > 37)
+                        sendAlert("O paciente está com febre!");
                     break;
                 case WEATHERTEMPERATURE:
                     break;
                 case HEARTBEAT:
+                    if(context.second < 60) {
+                        sendAlert("Batimentos cardíacos abaixo do normal!");
+                    } else if (context.second > 110) {
+                        sendAlert("Batimento muito alto!");
+                    }
                     break;
                 default:
                     break;

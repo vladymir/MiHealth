@@ -4,6 +4,7 @@ package br.ufc.ubicomp.mihealth.sensors;
 import android.os.AsyncTask;
 
 import java.util.HashMap;
+import java.util.Random;
 
 import br.ufc.ubicomp.mihealth.bus.ErrorHandlerEventBus;
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
@@ -29,7 +30,8 @@ public class HeartMonitorSensorManager extends MiSensorManager implements HashCo
      */
     @Override
     public Tuple<Sensor, Double> collect() {
-        Tuple<Sensor,Double> result = new Tuple<>(Sensor.HEARTBEAT, new Double(Math.random() * 80));
+        Tuple<Sensor,Double> result = new Tuple<>(Sensor.HEARTBEAT,
+                new Double(new Random().nextInt((150 - 60) + 1) + 60 ));
         return result;
     }
 

@@ -1,6 +1,7 @@
 package br.ufc.ubicomp.mihealth.sensors;
 
 import java.util.HashMap;
+import java.util.Random;
 
 import br.ufc.ubicomp.mihealth.bus.ErrorHandlerEventBus;
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
@@ -24,7 +25,8 @@ public class BodyTemperatureSensorManager extends MiSensorManager implements Has
      */
     @Override
     public Tuple<Sensor, Double> collect() {
-        Tuple<Sensor,Double> result = new Tuple<>(Sensor.BODYTEMPERATURE, new Double( Math.random() * 40 ));
+        Tuple<Sensor,Double> result = new Tuple<>(Sensor.BODYTEMPERATURE,
+                new Double( new Random().nextInt((45 - 30) + 1) + 30 ));
         return result;
     }
 
