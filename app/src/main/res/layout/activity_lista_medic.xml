@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context="br.ufc.ubicomp.mihealth.activities.MedicinesActivity">
+    >
 
 
 
@@ -31,7 +31,7 @@
             <ListView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/listView" />
+                android:id="@+id/lvMedicines" />
         </ScrollView>
 
         <LinearLayout

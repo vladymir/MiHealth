@@ -6,7 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="bem_Vindo">Welcome !</string>
     <string name="Nome">Name</string>
-    <string name="Medicamentos">Drugs</string>
+    <string name="Medicamentos">Medicines</string>
     <string name="Contatos">Contacts</string>
     <string name="Telefone">Phone</string>
     <string name="Cadastrar">Register</string>
@@ -29,5 +29,10 @@
     <string name="title_activity_pessoas">People</string>
     <string name="title_activity_cadastro_usuario">Users Register</string>
     <string name="title_activity_lista_medic">Medicines List</string>
+    <string name="cadastrar_contatos">Register Contacts</string>
+    <string name="cadastrar_medicamentos">Register Medicines</string>
+
+    <string name="campo_obrigatorio">Required Field</string>
+    <string name="sucesso">Success</string>
 
 </resources>

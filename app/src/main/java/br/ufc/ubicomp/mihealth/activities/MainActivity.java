@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.res.Configuration;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -20,6 +22,8 @@ import com.google.android.gms.fitness.Fitness;
 
 import br.ufc.ubicomp.mihealth.R;
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
+import br.ufc.ubicomp.mihealth.dao.DatabaseHelper;
+import br.ufc.ubicomp.mihealth.dao.MedicinesDAO;
 import br.ufc.ubicomp.mihealth.events.FinalizeEvent;
 import br.ufc.ubicomp.mihealth.events.GenericEvent;
 import br.ufc.ubicomp.mihealth.events.LocationEvent;
@@ -102,7 +106,8 @@ public class MainActivity extends Activity {
         Intent heartMonitorService = new Intent(this, MiHeartMonitorService.class);
         this.startService(heartMonitorService);
 
-        Log.d("US", "OrientationChange.onCreate");
+
+
         int currentOrientation = getResources().getConfiguration().orientation;
         dados_us = (ImageButton) findViewById(R.id.dados_usuario);
         cad_med = (ImageButton) findViewById(R.id.cad_med);

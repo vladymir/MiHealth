@@ -18,6 +18,7 @@ public class User implements Serializable {
 
     public User() {
         this.heartBeatFreq = new ArrayList<HeartBeatFreq>();
+
     }
 
     public int getId() {

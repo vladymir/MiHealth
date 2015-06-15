@@ -10,7 +10,7 @@
         style="@style/Theme.MyTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Cadastrar"
+        android:text="@string/cadastrar_medicamentos"
         android:id="@+id/textView12"
         android:layout_gravity="center_horizontal"
         android:textSize="@dimen/abc_text_size_display_3_material"
@@ -30,11 +30,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:ems="10"
         style="@style/Theme.MyTheme"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:id="@+id/editText"
+        android:id="@+id/edNomeMed"
         android:layout_weight="1" />
 
     <TextView
@@ -50,11 +50,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="date"
+        android:inputType="text"
         android:ems="10"
         style="@style/Theme.MyTheme"
         android:textSize="@dimen/abc_text_size_display_1_material"
-        android:id="@+id/editText7"
+        android:id="@+id/edHorarioMed"
         android:layout_weight="1" />
 
     <TextView
@@ -81,22 +81,21 @@
     <Space
         android:layout_width="fill_parent"
         android:layout_height="20dp"
-        android:layout_weight="4" />
+        android:layout_weight="5" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/ok"
         android:background="@android:color/holo_green_light"
-        android:id="@+id/butOk"
+        android:id="@+id/okMedReg"
         android:layout_weight="1"
         android:textColor="@android:color/white"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_display_1_material"
         android:onClick="onClick"
-        android:enabled="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false" />
+        android:enabled="true"
+       />
 
     <LinearLayout
         style="@android:style/ButtonBar"
