@@ -14,10 +14,8 @@ import br.ufc.ubicomp.mihealth.R;
 
 public class MasterFooter extends Activity {
 
-    ImageButton dados_us;
-    ImageButton cad_med;
-    ImageButton cad_us;
-    ImageButton ajust;
+    ImageButton main;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,39 +24,11 @@ public class MasterFooter extends Activity {
         // detect the current orientation
         int currentOrientation = getResources().getConfiguration().orientation;
 
-        dados_us = (ImageButton) findViewById(R.id.dados_usuario);
-        cad_med = (ImageButton) findViewById(R.id.cad_med);
-        cad_us = (ImageButton) findViewById(R.id.cad_cont);
-        ajust = (ImageButton) findViewById(R.id.ajustes);
+       main= (ImageButton) findViewById(R.id.mainF);
 
 
 
-        dados_us.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                    Intent intent = new Intent(MasterFooter.this, UserRegistrationActivity.class);
-                    startActivity(intent);
-                }
-        });
-
-        cad_med.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                Intent intent = new Intent(MasterFooter.this, MedicinesActivity.class);
-                startActivity(intent);
-            }
-
-
-        });
-
-        cad_us.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                Intent intent = new Intent(MasterFooter.this, ListContactsActivity.class);
-                startActivity(intent);
-            }
-        });
-        ajust.setOnClickListener(new View.OnClickListener() {
+        main.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 Intent intent = new Intent(MasterFooter.this, MainActivity.class);

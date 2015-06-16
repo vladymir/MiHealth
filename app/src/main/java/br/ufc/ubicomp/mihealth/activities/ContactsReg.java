@@ -7,9 +7,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import br.ufc.ubicomp.mihealth.R;
+import br.ufc.ubicomp.mihealth.adapter.ContatosAdapter;
+import br.ufc.ubicomp.mihealth.adapter.MedicinesAdapter;
+import br.ufc.ubicomp.mihealth.dao.ContatosDAO;
+import br.ufc.ubicomp.mihealth.dao.MedicinesDAO;
+import br.ufc.ubicomp.mihealth.model.Contatos;
+import br.ufc.ubicomp.mihealth.model.Medicines;
 
 
 public class ContactsReg extends Activity {
@@ -19,13 +29,58 @@ public class ContactsReg extends Activity {
     ImageButton cad_us;
     ImageButton ajust;
     ImageButton main;
+    Button _ok;
 
+    private EditText edNome, edTelefone;
+    private ContatosDAO contatosDAO;
+    private Contatos contatos;
+    private int idContatos;
 
+    //método de cadastro
+    private void cadastrar(){
+        boolean validacao = true;
+        String nome = edNome.getText().toString();
+        String telefone = edTelefone.getText().toString();
+
+        if(nome == null || nome.equals("") ){validacao=false;
+            edNome.setError(getString(R.string.campo_obrigatorio));}
+
+        if(telefone == null || nome.equals("") ){validacao=false;
+            edTelefone.setError(getString(R.string.campo_obrigatorio));}
+
+        if(validacao){
+            contatos = new Contatos();
+            contatos.setNome(nome);
+            contatos.setTelefone(telefone);
+
+            //se atualizar
+            if(idContatos >0){contatos.set_id(idContatos);}
+
+            long resultado = contatosDAO.salvarContatos(contatos);
+
+            if(resultado != -1){
+                if(idContatos > 0){
+                    Toast.makeText(this, "Success! ", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(this, "Success!  ",  Toast.LENGTH_SHORT).show();}
+                finish();
+                startActivity( new Intent(this, MainActivity.class));
+            }else {Toast.makeText(this, "Error! ", Toast.LENGTH_SHORT).show();}
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_contato);
+
+        contatosDAO = new ContatosDAO(this);
+
+        edNome = (EditText) findViewById(R.id.edContNome);
+        edTelefone= (EditText) findViewById(R.id.edContTel);
+
+
 
         Log.d("US", "OrientationChange.onCreate");
         // detect the current orientation
@@ -36,6 +91,14 @@ public class ContactsReg extends Activity {
         cad_us = (ImageButton) findViewById(R.id.cad_cont);
         ajust = (ImageButton) findViewById(R.id.ajustes);
         main = (ImageButton) findViewById(R.id.main);
+        _ok = (Button) findViewById(R.id.okContReg);
+
+        _ok.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                ContactsReg.this.cadastrar();
+            }
+        });
 
         main.setOnClickListener(new View.OnClickListener() {
 
@@ -79,6 +142,7 @@ public class ContactsReg extends Activity {
         });
 
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -105,6 +169,7 @@ public class ContactsReg extends Activity {
 
     @Override
     protected void onDestroy() {
+        contatosDAO.fechar();
         super.onDestroy();
         Log.i("US", "OrientationChange.onDestroy");
     }

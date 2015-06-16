@@ -10,10 +10,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
+
+import java.util.List;
 
 import br.ufc.ubicomp.mihealth.R;
+import br.ufc.ubicomp.mihealth.adapter.MedicinesAdapter;
+import br.ufc.ubicomp.mihealth.dao.MedicinesDAO;
+import br.ufc.ubicomp.mihealth.model.Medicines;
 
 public class MedicinesActivity extends Activity {
+    private ListView lista;
+    private List<Medicines> medicinesList;
+    private MedicinesAdapter medicinesAdapter;
+    private MedicinesDAO medicinesDAO;
+
+
     ImageButton dados_us;
     ImageButton cad_med;
     ImageButton cad_us;
@@ -21,13 +33,26 @@ public class MedicinesActivity extends Activity {
     ImageButton main;
     Button _ok;
     ImageButton addMed;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_medic);
+
+        medicinesDAO = new MedicinesDAO(this);
+        medicinesList = medicinesDAO.listarMedicines();
+        medicinesAdapter = new MedicinesAdapter(this, medicinesList);
+
+
+        lista = (ListView) findViewById(R.id.lvMedicines);
+        lista.setAdapter(medicinesAdapter);
+
         Log.d("US", "OrientationChange.onCreate");
         // detect the current orientation
         int currentOrientation = getResources().getConfiguration().orientation;
+
+
+
 
         dados_us = (ImageButton) findViewById(R.id.dados_usuario);
         cad_med = (ImageButton) findViewById(R.id.cad_med);

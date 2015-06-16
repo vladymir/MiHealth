@@ -27,4 +27,8 @@
     <string name="title_activity_pessoas">pessoas</string>
     <string name="title_activity_cadastro_usuario">cadastro_usuario</string>
     <string name="title_activity_lista_medic">Lista Medicamentos</string>
+    <string name="cadastrar_contatos">Cadastrar Contatos</string>
+    <string name="cadastrar_medicamentos">Cadastrar_Medicamentos</string>
+    <string name="campo_obrigatorio">Campo Obrigatório</string>
+    <string name="sucesso">Sucesso</string>
 </resources>

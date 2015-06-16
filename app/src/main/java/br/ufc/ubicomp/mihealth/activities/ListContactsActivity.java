@@ -55,7 +55,7 @@ public class ListContactsActivity extends Activity {
         addCont.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(ListContactsActivity.this, MedicinesReg.class);
+                Intent intent = new Intent(ListContactsActivity.this, ContactsReg.class);
                 startActivity(intent);
             }
         });
