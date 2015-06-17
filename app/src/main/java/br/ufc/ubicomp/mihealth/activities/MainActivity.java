@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.res.Configuration;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,23 +19,15 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.fitness.Fitness;
 
-import java.util.List;
-
 import br.ufc.ubicomp.mihealth.R;
 import br.ufc.ubicomp.mihealth.bus.MainEventBus;
-import br.ufc.ubicomp.mihealth.context.AggregateContext;
 import br.ufc.ubicomp.mihealth.context.UpdateUIEvent;
 import br.ufc.ubicomp.mihealth.enums.Sensor;
-import br.ufc.ubicomp.mihealth.dao.DatabaseHelper;
-import br.ufc.ubicomp.mihealth.dao.MedicinesDAO;
-import br.ufc.ubicomp.mihealth.events.BodyTemperatureEvent;
 import br.ufc.ubicomp.mihealth.events.FinalizeEvent;
 import br.ufc.ubicomp.mihealth.events.GenericEvent;
-import br.ufc.ubicomp.mihealth.events.HeartMonitorEvent;
 import br.ufc.ubicomp.mihealth.events.LocationEvent;
 import br.ufc.ubicomp.mihealth.events.RequestSensorClientEvent;
 import br.ufc.ubicomp.mihealth.events.ResponseSensorClientEvent;
-import br.ufc.ubicomp.mihealth.events.WeatherEvent;
 import br.ufc.ubicomp.mihealth.services.MiHeartMonitorService;
 import br.ufc.ubicomp.mihealth.services.MiService;
 import br.ufc.ubicomp.mihealth.utils.Tuple;
@@ -116,8 +106,6 @@ public class MainActivity extends Activity {
 
         Intent heartMonitorService = new Intent(this, MiHeartMonitorService.class);
         this.startService(heartMonitorService);
-
-
 
         Log.d("US", "OrientationChange.onCreate");
         int currentOrientation = getResources().getConfiguration().orientation;
@@ -260,7 +248,11 @@ public class MainActivity extends Activity {
                     weather.setText(String.valueOf(contextData.second.intValue()));
                     break;
                 case HEARTBEAT:
-                    heartBeat.setText(String.valueOf(contextData.second.intValue()));
+                    String value = "--";
+                    if (contextData.second.intValue() >= 0) {
+                        value = String.valueOf(contextData.second.intValue());
+                    }
+                    heartBeat.setText(value);
                     break;
                 default:
                     break;
